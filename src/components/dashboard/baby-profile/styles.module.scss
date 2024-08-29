@@ -1,0 +1,70 @@
+@import '@/styles/colors';
+
+$image-size: 100px;
+$border-radius: 1.5rem;
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.5rem;
+    position: relative;
+}
+
+.photoContainer {
+    border: calc($border-radius / 8) solid $white;
+    border-radius: $border-radius;
+    background-color: $white;
+    width: $image-size;
+    height: $image-size;
+    min-width: $image-size;
+    padding: 3px;
+
+    img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: calc($border-radius / 1.3);
+    }
+}
+
+.summary {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.babyName {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: $white;
+}
+
+.stats {
+    display: grid;
+    column-gap: 0.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    flex-grow: 1;
+}
+
+.stat {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: $border-radius;
+    text-align: center;
+    background-color: transparentize($color: $white, $amount: 0.9);
+    color: $white;
+    padding: 6px;
+}
+
+.statLabel {
+    font-size: 12px;
+}
+
+.statValue {
+    font-size: 14px;
+    font-weight: bold;
+}

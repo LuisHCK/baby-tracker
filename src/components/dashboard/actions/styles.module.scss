@@ -1,0 +1,48 @@
+@import '@/styles/colors';
+
+$border-radius: 1.5rem;
+$transparency: 0.8;
+
+.container {
+    position: relative;
+    z-index: 1;
+    background-color: $white;
+    padding: 1rem;
+    border-radius: $border-radius;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 0.5rem;
+}
+
+.actionButton {
+    border: none;
+    border-radius: calc($border-radius / 1.5);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.variantRed {
+    background-color: transparentize($color: $light-red, $amount: $transparency);
+    color: $light-red;
+}
+
+.variantOrange {
+    background-color: transparentize($color: $orange, $amount: $transparency);
+    color: $orange;
+}
+
+.variantPurple {
+    background-color: transparentize($color: $purple, $amount: $transparency);
+    color: $purple;
+}

@@ -1,0 +1,67 @@
+@import '@/styles/colors';
+
+$icon-size: 48px;
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    column-gap: 1rem;
+}
+
+.iconContainer {
+    width: $icon-size;
+    height: $icon-size;
+    min-width: $icon-size;
+    border-radius: $icon-size;
+    background-color: transparentize($color: $primary-color, $amount: 0.5);
+    border: 2px solid $white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: $white;
+
+    svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    &:global(.diaper) {
+        background-color: transparentize($color: $secondary-color, $amount: 0.5);
+    }
+}
+
+.content {
+    display: flex;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.contentDetails {
+    width: 100%;
+}
+
+.label {
+    font-weight: bold;
+    font-size: 16px;
+    color: $dark-blue;
+}
+
+.taskDate {
+    font-size: 12px;
+    color: $dark-blue;
+    display: flex;
+    align-items: center;
+    column-gap: 3px;
+}
+
+.time {
+    font-size: 14px;
+    font-weight: bold;
+    color: $secondary-color;
+    display: flex;
+    align-items: center;
+    text-wrap: nowrap;
+}
