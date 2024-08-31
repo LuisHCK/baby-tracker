@@ -1,10 +1,13 @@
+import FullPageLoader from '@/components/common/fullpage-loader'
+import { AppContext } from '@/context/app'
 import { useAuth } from '@clerk/clerk-react'
 import PropTypes from 'prop-types'
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { useLocation } from 'wouter'
 
 const AuthRequired = ({ children }) => {
     const { userId, isLoaded } = useAuth()
+    const { babyInfo } = useContext(AppContext)
     // eslint-disable-next-line no-unused-vars
     const [_, navigate] = useLocation()
 
@@ -12,10 +15,14 @@ const AuthRequired = ({ children }) => {
         if (isLoaded && !userId) {
             navigate('/login')
         }
-    }, [isLoaded, userId, navigate])
+
+        if (isLoaded && userId && !babyInfo?.name) {
+            navigate('/settings')
+        }
+    }, [isLoaded, userId, babyInfo, navigate])
 
     if (!isLoaded) {
-        return <p>Loading...</p>
+        return <FullPageLoader />
     }
 
     return children

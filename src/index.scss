@@ -1,4 +1,6 @@
-@import './styles/_colors.scss';
+@import './styles/colors';
+@import './styles/spacing';
+@import './styles/flex';
 
 :root {
     color-scheme: only light;
