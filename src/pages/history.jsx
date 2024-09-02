@@ -1,9 +1,10 @@
+import HistoryView from '@/views/history'
 import AuthRequired from '../router/auth-required'
 
 const HistoryPage = () => {
     return (
         <AuthRequired>
-            <div>HistoryPage</div>
+            <HistoryView />
         </AuthRequired>
     )
 }

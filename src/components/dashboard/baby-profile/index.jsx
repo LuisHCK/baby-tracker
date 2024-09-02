@@ -4,7 +4,7 @@ import { AppContext } from '@/context/app'
 import { differenceInMonths, parse } from 'date-fns'
 
 const BabyProfile = () => {
-    const { babyInfo } = useContext(AppContext)
+    const { babyInfo, units } = useContext(AppContext)
     const age = useMemo(() => {
         if (!babyInfo?.birthday) return
 
@@ -22,7 +22,7 @@ const BabyProfile = () => {
                 <div className={styles.stats}>
                     <div className={styles.stat}>
                         <div className={styles.statLabel}>Weight</div>
-                        <div className={styles.statValue}>{babyInfo?.weight}</div>
+                        <div className={styles.statValue}>{babyInfo?.weight}{units?.weightUnit}</div>
                     </div>
                     <div className={styles.stat}>
                         <div className={styles.statLabel}>Age</div>
@@ -30,7 +30,7 @@ const BabyProfile = () => {
                     </div>
                     <div className={styles.stat}>
                         <div className={styles.statLabel}>Height</div>
-                        <div className={styles.statValue}>{babyInfo?.height}</div>
+                        <div className={styles.statValue}>{babyInfo?.height}{units?.lengthUnit}</div>
                     </div>
                 </div>
             </div>

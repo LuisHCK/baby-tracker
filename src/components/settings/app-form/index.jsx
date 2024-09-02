@@ -7,13 +7,7 @@ import { useForm } from 'react-hook-form'
 let SAVE_TIMEOUT = null
 
 const AppSettingsForm = () => {
-    const {
-        register,
-        handleSubmit,
-        watch,
-        setValue,
-        formState: { isDirty }
-    } = useForm()
+    const { register, handleSubmit, watch, setValue } = useForm()
     const { units, setUnits } = useContext(AppContext)
     const [isLoaded, setIsLoaded] = useState(false)
 
@@ -45,7 +39,7 @@ const AppSettingsForm = () => {
     }, [units, setValue, isLoaded, setIsLoaded])
 
     return (
-        <form onSubmit={handleSubmit(console.log)}>
+        <form onSubmit={handleSubmit()}>
             <div>
                 <label htmlFor="liquidUnit">Liquid unit</label>
                 <select
@@ -57,7 +51,6 @@ const AppSettingsForm = () => {
                     <option value="ml">ml</option>
                     <option value="uk fl-oz">uk fl-oz</option>
                     <option value="us fl-oz">us fl-oz</option>
-                    <option value="cup">cup</option>
                 </select>
             </div>
 

@@ -6,6 +6,8 @@ import Actions from '@/components/dashboard/actions'
 import InProgress from '@/components/dashboard/in-progress'
 import { IconDiaper } from '@tabler/icons-react'
 import TaskCard from '@/components/common/task-card'
+import { useEffect, useState } from 'react'
+import { getLatestHistory } from '@/controllers/history'
 // import UseSupabase from '@/hooks/use-supabase'
 // import { useEffect } from 'react'
 
@@ -15,30 +17,18 @@ const task = {
     startedAt: '2024-08-28T23:19:43.738Z',
     endedAt: '2024-08-28T23:32:00.738Z'
 }
-
-const taskHistory = [
-    {
-        id: 1,
-        type: 'diaper',
-        label: 'Daiper',
-        startedAt: '2024-08-28T23:19:43.738Z',
-        endedAt: '2024-08-28T23:32:00.738Z'
-    }
-]
-
 const DashboardPage = () => {
-    // const { client } = UseSupabase()
-    
+    const [latestHistory, setLatestHistory] = useState([])
 
-    // useEffect(() => {
-    //     const get = async () => {
-    //         const { data } = await client.from('history').select('*')
-    //         console.log(data)
-    //     }
-
-    //     client && get()
-    // }, [client])
-
+    useEffect(() => {
+        const loadHistory = async () => {
+            const history = await getLatestHistory()
+            if (history) {
+                setLatestHistory(history)
+            }
+        }
+        loadHistory()
+    }, [])
 
     return (
         <AuthRequired>
@@ -54,7 +44,7 @@ const DashboardPage = () => {
                     <InProgress task={task} />
 
                     <h3 className={styles.sectionTitle}>History</h3>
-                    {taskHistory.map((task) => (
+                    {latestHistory.map((task) => (
                         <TaskCard task={task} key={`task-id-${task.id}`} />
                     ))}
                 </div>

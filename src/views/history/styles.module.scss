@@ -1,0 +1,44 @@
+@import '@/styles/colors';
+
+$border-color: transparentize($color: $dark-blue, $amount: 0.8);
+$base: 1rem;
+$offset: 0.063rem;
+
+.taskList {
+    list-style: none;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 1rem;
+
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: -#{$base + $offset};
+        top: $base;
+        height: 90%;
+        border-left: 2px solid $border-color;
+    }
+
+    & > li {
+        list-style: none;
+        position: relative;
+
+        &::before {
+            $size: #{$base + ($base / 2)};
+            content: '';
+            position: absolute;
+            left: -#{$size};
+            top: 5%;
+            width: $base;
+            min-width: $base;
+            height: $base;
+            max-width: $base;
+            background-color: $white;
+            border-radius: $base;
+            border: 2px solid $border-color;
+        }
+    }
+}

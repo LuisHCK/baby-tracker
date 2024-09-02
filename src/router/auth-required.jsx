@@ -1,5 +1,6 @@
 import FullPageLoader from '@/components/common/fullpage-loader'
 import { AppContext } from '@/context/app'
+import { isEmpty } from '@/utils/tools'
 import { useAuth } from '@clerk/clerk-react'
 import PropTypes from 'prop-types'
 import { useContext, useEffect } from 'react'
@@ -16,7 +17,7 @@ const AuthRequired = ({ children }) => {
             navigate('/login')
         }
 
-        if (isLoaded && userId && !babyInfo?.name) {
+        if (isLoaded && userId && isEmpty(babyInfo)) {
             navigate('/settings')
         }
     }, [isLoaded, userId, babyInfo, navigate])

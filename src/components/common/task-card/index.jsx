@@ -1,47 +1,74 @@
 import PropTypes from 'prop-types'
 import Card from '../card'
-import { IconBabyBottle, IconCalendar, IconDiaper, IconStopwatch, IconSubtask, IconZzz } from '@tabler/icons-react'
+import {
+    IconBabyBottle,
+    IconCalendar,
+    IconClock,
+    IconDiaper,
+    IconHourglassEmpty,
+    IconSubtask,
+    IconZzz
+} from '@tabler/icons-react'
 import { format, parseISO, intervalToDuration } from 'date-fns'
 import styles from './styles.module.scss'
 import classNames from 'classnames'
+import { useMemo } from 'react'
+import { formatDuration, shortUnit } from '@/utils/tools'
 
 const TaskCard = ({ task }) => {
-    const renderIcon = () => {
+    const taskDetails = useMemo(() => {
         switch (task.type) {
             case 'diaper':
-                return <IconDiaper />
+                return { icon: <IconDiaper />, label: 'Diaper' }
             case 'sleeping':
-                return <IconZzz />
+                return { icon: <IconZzz />, label: 'Sleeping' }
             case 'feeding':
-                return <IconBabyBottle />
+                return {
+                    icon: <IconBabyBottle />,
+                    label: 'Feeding',
+                    details: () => (
+                        <div className={classNames(styles.subHeading, 'd-flex')}>
+                            <div className={styles.value}>
+                                {task.milk} {shortUnit(task.unit)}
+                            </div>
+                        </div>
+                    )
+                }
             default:
-                return <IconSubtask />
+                return { icon: <IconSubtask />, label: '' }
         }
-    }
+    }, [task])
 
-    const duration = intervalToDuration({
-        start: parseISO(task.endedAt),
-        end: new Date()
-    })
+    const duration = useMemo(() => {
+        if (task.endedAt) {
+            return intervalToDuration({
+                start: parseISO(task.endedAt),
+                end: new Date()
+            })
+        }
+    }, [task])
 
     return (
         <Card className={styles.container}>
             <div className={classNames(styles.iconContainer, task.type)}>
-                <div className="icon">{renderIcon()}</div>
+                <div className="icon">{taskDetails?.icon}</div>
             </div>
             <div className={styles.content}>
                 <div className={styles.contentDetails}>
-                    <div className={styles.label}>{task.label}</div>
+                    <div className={styles.label}>{taskDetails?.label}</div>
+
+                    {taskDetails?.details && taskDetails?.details()}
 
                     <div className={styles.taskDate}>
                         <IconCalendar width={14} />
-                        {format(parseISO(task.startedAt), 'hh:mm aaa LLL d')}
+                        {format(parseISO(task.endedAt), 'hh:mm aaa LLL d')}
                     </div>
                 </div>
-                <div className={styles.time}>
-                    <IconStopwatch width={16} />
-                    {duration.hours}h {duration.minutes}m
-                </div>
+                {!!duration && (
+                    <div className={styles.time}>
+                        {formatDuration(duration)} <IconClock width={18} />
+                    </div>
+                )}
             </div>
         </Card>
     )
@@ -52,7 +79,9 @@ TaskCard.propTypes = {
         type: PropTypes.string,
         label: PropTypes.string,
         startedAt: PropTypes.string,
-        endedAt: PropTypes.string
+        endedAt: PropTypes.string,
+        milk: PropTypes.number,
+        unit: PropTypes.string
     }).isRequired
 }
 
