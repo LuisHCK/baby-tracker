@@ -1,7 +1,11 @@
 import { UserProfile } from '@clerk/clerk-react'
 
 const ProfilePage = () => {
-    return <UserProfile path='/app/profile' />
+    return (
+        <div className="page">
+            <UserProfile path="/app/profile" />
+        </div>
+    )
 }
 
 export default ProfilePage

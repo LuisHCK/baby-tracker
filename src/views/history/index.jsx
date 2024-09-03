@@ -19,7 +19,7 @@ const HistoryView = () => {
     }, [])
 
     return (
-        <div className="page container">
+        <div className="page container pt-4">
             <h3>History</h3>
 
             <ul className={classNames("d-flex flex-column flex-gap-2", styles.taskList)}>

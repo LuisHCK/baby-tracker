@@ -15,7 +15,7 @@ const RegisterPage = () => {
 
     return (
         <AuthRequired>
-            <div className="container">{renderView()}</div>
+            <div className="container page pt-4">{renderView()}</div>
         </AuthRequired>
     )
 }

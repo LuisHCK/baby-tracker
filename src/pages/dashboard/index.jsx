@@ -32,7 +32,7 @@ const DashboardPage = () => {
 
     return (
         <AuthRequired>
-            <div>
+            <div className="page mt-0">
                 <div className={classNames('container', styles.header)}>
                     <BabyProfile />
                 </div>

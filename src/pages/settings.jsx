@@ -3,7 +3,7 @@ import BabyInfoForm from '@/components/settings/baby-info'
 
 const SettingsPage = () => {
     return (
-        <div className="container mt-5">
+        <div className="container pt-4">
             <h2>Baby information</h2>
             <BabyInfoForm />
 

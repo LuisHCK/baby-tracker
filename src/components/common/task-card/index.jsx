@@ -5,7 +5,6 @@ import {
     IconCalendar,
     IconClock,
     IconDiaper,
-    IconHourglassEmpty,
     IconSubtask,
     IconZzz
 } from '@tabler/icons-react'
@@ -48,6 +47,8 @@ const TaskCard = ({ task }) => {
         }
     }, [task])
 
+    console.log(duration)
+
     return (
         <Card className={styles.container}>
             <div className={classNames(styles.iconContainer, task.type)}>
@@ -80,7 +81,7 @@ TaskCard.propTypes = {
         label: PropTypes.string,
         startedAt: PropTypes.string,
         endedAt: PropTypes.string,
-        milk: PropTypes.number,
+        milk: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
         unit: PropTypes.string
     }).isRequired
 }

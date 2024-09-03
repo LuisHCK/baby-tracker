@@ -1,8 +1,10 @@
+@use 'sass:math';
 @import '@/styles/colors';
 
 $border-color: transparentize($color: $dark-blue, $amount: 0.8);
 $base: 1rem;
 $offset: 0.063rem;
+$half-base: math.div($base, 2);
 
 .taskList {
     list-style: none;
@@ -27,7 +29,7 @@ $offset: 0.063rem;
         position: relative;
 
         &::before {
-            $size: #{$base + ($base / 2)};
+            $size: #{$base + $half-base};
             content: '';
             position: absolute;
             left: -#{$size};

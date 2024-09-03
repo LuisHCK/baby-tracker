@@ -32,6 +32,9 @@ export const formatDuration = (duration = {}) => {
     if (duration.minutes && duration.minutes > 0 && !duration.days) {
         result += `${duration.minutes}m`
     }
+    if (!duration.minutes && duration.seconds > 0) {
+        result += `${duration.seconds}s`
+    }
 
     return result
 }
