@@ -46,7 +46,7 @@ const Navigation = () => {
                     })}
                     key={`nav-button-${button.label}`}
                 >
-                    <button.icon />
+                    <button.icon height={22} width={22} />
                     {button.label}
                 </Link>
             ))}

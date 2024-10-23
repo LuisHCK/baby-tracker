@@ -1,5 +1,6 @@
 import AppSettingsForm from '@/components/settings/app-form'
 import BabyInfoForm from '@/components/settings/baby-info'
+import { Link } from 'wouter'
 
 const SettingsPage = () => {
     return (
@@ -9,6 +10,12 @@ const SettingsPage = () => {
 
             <h2>App settings</h2>
             <AppSettingsForm />
+
+            <div className="d-flex">
+                <Link type="button" to="/" className="w-100 btn btn-primary">
+                    Close
+                </Link>
+            </div>
         </div>
     )
 }

@@ -2,12 +2,12 @@
     "liquid": {
         "us fl-oz": {
             "min": 0,
-            "max": 12,
+            "max": 18,
             "step": 0.25
         },
         "uk fl-oz": {
             "min": 0,
-            "max": 12,
+            "max": 18,
             "step": 0.25
         },
         "ml": {

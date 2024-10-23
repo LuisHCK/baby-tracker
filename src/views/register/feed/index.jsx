@@ -1,110 +1,63 @@
-import { useContext, useEffect } from 'react'
-import MilkInput from '@/components/tracking/milk-input'
+import TaskCard from '@/components/common/task-card'
+import { getHistoryByType } from '@/controllers/history'
+import { Fragment, useEffect, useState } from 'react'
 import styles from './styles.module.scss'
-import { format, parse } from 'date-fns'
-import { Link, useLocation } from 'wouter'
-import { getSettings, saveSettings } from '@/controllers/settings'
-import { useForm } from 'react-hook-form'
-import { addHistory } from '@/controllers/history'
-import toast from 'react-hot-toast'
-import { AppContext } from '@/context/app'
+import NoResults from '@/components/no-results'
+import Modal from '@/components/modal'
+import FeedForm from './form'
 
 const FeedView = () => {
-    const [, navigate] = useLocation()
-    const {
-        register,
-        handleSubmit,
-        watch,
-        setValue,
-        formState: { isValid }
-    } = useForm({
-        defaultValues: {
-            milk: 0
-        }
-    })
-    const { units } = useContext(AppContext)
+    const [history, setHistory] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
+    const [feedModalIsOpen, setFeedModalIsOpen] = useState(false)
 
-    const saveData = async (data) => {
-        const response = await addHistory({
-            ...data,
-            type: 'feeding',
-            endedAt: parse(data.feedingTime, `yyyy-MM-dd'T'HH:mm`, new Date()).toISOString(),
-            unit: units?.liquidUnit
-        })
-        if (response) {
-            toast.success('Feed logged successfully')
-            setTimeout(() => {
-                navigate('/')
-            }, 300)
-        }
+    const toggleFeedModal = () => {
+        setFeedModalIsOpen((prev) => !prev)
     }
 
     useEffect(() => {
-        const subscription = watch(async (value) => {
-            if (value.source) {
-                await saveSettings('defaultMilkSource', value.source)
-            }
-        })
+        const getHistory = async () => {
+            setIsLoading(true)
+            const res = await getHistoryByType('feeding')
+            setIsLoading(false)
 
-        return () => subscription.unsubscribe()
-    }, [watch])
-
-    useEffect(() => {
-        const loadDefaultMilkSource = async () => {
-            const { value } = await getSettings('defaultMilkSource')
-            if (value) {
-                setValue('source', value)
+            if (res) {
+                setHistory(res)
             }
         }
-        loadDefaultMilkSource()
-    }, [setValue])
+
+        getHistory()
+    }, [])
 
     return (
-        <form onSubmit={handleSubmit(saveData)} className={styles.container}>
-            <MilkInput register={register} value={watch('milk')} />
+        <Fragment>
+            <div className={styles.feedLayout}>
+                <ul>
+                    {history.map((task) => (
+                        <li key={`${task.id}-${task.createdAt}`}>
+                            <TaskCard task={task} key={`task-id-${task.id}`} />
+                        </li>
+                    ))}
+                </ul>
 
-            <div className={styles.formInput}>
-                <label htmlFor="feedingTime">Feeding time</label>
+                {!isLoading && !history.length && <NoResults />}
 
-                <input
-                    type="datetime-local"
-                    id="feedingTime"
-                    name="feedingTime"
-                    defaultValue={format(new Date(), `yyyy-MM-dd'T'HH:mm`)}
-                    required
-                    {...register('feedingTime', { required: true })}
-                />
+                <div className={styles.registerFeed}>
+                    <button className="w-100" onClick={toggleFeedModal}>
+                        Add feed
+                    </button>
+                </div>
             </div>
 
-            <div>
-                <label htmlFor="source">Source</label>
-                <select
-                    name="source"
-                    id="source"
-                    aria-label="Source"
-                    required
-                    {...register('source', { required: true })}
-                >
-                    <option value="" disabled>
-                        Select source...
-                    </option>
-                    <option value="formula">Formula</option>
-                    <option value="breast">Breast</option>
-                </select>
-            </div>
-
-            <div>
-                <label htmlFor="notes">Notes (optional)</label>
-                <textarea name="notes" id="notes" rows="3" {...register('notes')} />
-            </div>
-
-            <button type="submit" disabled={!isValid}>
-                Submit
-            </button>
-            <Link href="/" className="button outline secondary">
-                Cancel
-            </Link>
-        </form>
+            <Modal
+                isOpen={feedModalIsOpen}
+                onClose={toggleFeedModal}
+                title="Register new feed"
+                hideConfirm
+            >
+                <FeedForm />
+            </Modal>
+        </Fragment>
     )
 }
 

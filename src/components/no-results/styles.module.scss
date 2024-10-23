@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // height: 100%;
+    opacity: 0.4;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 40%;
+}
+
+.image {
+    width: 90px;
+    height: auto;
+    padding-bottom: 1rem;
+}

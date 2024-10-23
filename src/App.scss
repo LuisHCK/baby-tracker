@@ -21,3 +21,10 @@
 .page {
     padding-bottom: 7rem;
 }
+
+.not-selectable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

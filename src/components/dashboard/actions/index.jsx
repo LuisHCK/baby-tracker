@@ -17,7 +17,7 @@ const buttons = [
         path: '/register/feed'
     },
     {
-        label: 'Daiper',
+        label: 'Diaper',
         icon: IconDiaper,
         className: 'variantPurple',
         path: '/register/diaper'

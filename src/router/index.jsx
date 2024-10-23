@@ -12,7 +12,7 @@ export const AppRouter = () => {
     return (
         <Switch>
             <Route path="/" component={HomePage} />
-            <Route path="/login" component={LoginPage} />
+            <Route path="/login/*?" component={LoginPage} />
 
             <Route path="/app" nest>
                 <Route path="/" component={DashboardPage} />

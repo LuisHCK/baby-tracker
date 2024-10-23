@@ -1,0 +1,38 @@
+@import '@/styles/colors';
+
+.container {
+    border-radius: unset;
+    background: transparent;
+    box-shadow: none;
+}
+
+.header {
+    color: $light;
+    background-color: $primary-color;
+    border: unset;
+    border-radius: unset;
+    height: 4rem;
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.title {
+    font-size: 1.5rem;
+    color: $light;
+    margin: 0;
+}
+
+.backButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+
+    svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        color: $light;
+    }
+}

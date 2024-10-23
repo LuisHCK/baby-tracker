@@ -7,9 +7,21 @@ export const getHistory = async (limit = 10) => {
     return history
 }
 
+export const getHistoryByType = async (type) => {
+    try {
+        const history = await History.limit(100)
+            .filter((task) => task.type === type)
+            .toArray()
+        return history
+    } catch (error) {
+        console.error(error)
+        return null
+    }
+}
+
 export const getLatestHistory = async () => {
     try {
-        const history = await History.orderBy('createdAt').reverse().limit(10).toArray()
+        const history = await History.orderBy('createdAt').reverse().limit(5).toArray()
         return history
     } catch (error) {
         console.error(error)
