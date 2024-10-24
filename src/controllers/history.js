@@ -11,6 +11,7 @@ export const getHistoryByType = async (type) => {
     try {
         const history = await History.limit(100)
             .filter((task) => task.type === type)
+            .reverse()
             .toArray()
         return history
     } catch (error) {

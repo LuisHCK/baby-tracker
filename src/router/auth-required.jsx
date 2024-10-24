@@ -14,7 +14,7 @@ const AuthRequired = ({ children }) => {
 
     useEffect(() => {
         if (isLoaded && !userId) {
-            navigate('/login')
+            navigate('~/login')
         }
 
         if (isLoaded && userId && isEmpty(babyInfo)) {

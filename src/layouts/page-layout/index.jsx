@@ -4,7 +4,6 @@ import { IconArrowLeft } from '@tabler/icons-react'
 
 const PageLayout = ({ children, title = 'Baby Tracker' }) => {
     const goBack = () => {
-        console.log(window.history)
         window.history.back()
     }
 

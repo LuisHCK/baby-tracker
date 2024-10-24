@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react'
-import TaskCard from '@/components/common/task-card'
 import { getHistory } from '@/controllers/history'
-import classNames from 'classnames'
-import styles from './styles.module.scss'
+import TaskList from '@/components/task-list'
+import NoResults from '@/components/no-results'
 
 const HistoryView = () => {
+    const [isLoading, setIsLoading] = useState(true)
     const [history, setHistory] = useState([])
 
     useEffect(() => {
         const loadTasks = async () => {
+            setIsLoading(true)
             const history = await getHistory()
             if (history) {
                 setHistory(history)
             }
+            setIsLoading(false)
         }
 
         loadTasks()
@@ -21,14 +23,9 @@ const HistoryView = () => {
     return (
         <div className="page container pt-4">
             <h3>History</h3>
+            <TaskList tasks={history} />
 
-            <ul className={classNames("d-flex flex-column flex-gap-2", styles.taskList)}>
-                {history.map((task) => (
-                    <li key={`task-${task.id}`}>
-                        <TaskCard task={task} />
-                    </li>
-                ))}
-            </ul>
+            {!isLoading && !history.length && <NoResults />}
         </div>
     )
 }

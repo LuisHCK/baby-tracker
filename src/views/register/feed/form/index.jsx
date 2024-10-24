@@ -1,16 +1,15 @@
 import { useContext, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import MilkInput from '@/components/tracking/milk-input'
 import styles from './styles.module.scss'
 import { format, parse } from 'date-fns'
-import { useLocation } from 'wouter'
 import { getSettings, saveSettings } from '@/controllers/settings'
 import { useForm } from 'react-hook-form'
 import { addHistory } from '@/controllers/history'
 import toast from 'react-hot-toast'
 import { AppContext } from '@/context/app'
 
-const FeedForm = () => {
-    const [, navigate] = useLocation()
+const FeedForm = ({ onSubmit = () => {} }) => {
     const {
         register,
         handleSubmit,
@@ -33,9 +32,7 @@ const FeedForm = () => {
         })
         if (response) {
             toast.success('Feed logged successfully')
-            setTimeout(() => {
-                navigate('/')
-            }, 300)
+            onSubmit?.()
         }
     }
 
@@ -61,7 +58,7 @@ const FeedForm = () => {
 
     return (
         <form onSubmit={handleSubmit(saveData)} className={styles.container}>
-            <MilkInput register={register} value={watch('milk')} />
+            <MilkInput onChange={({ unit }) => setValue('milk', unit)} />
 
             <div className={styles.formInput}>
                 <label htmlFor="feedingTime">Feeding time</label>
@@ -103,6 +100,10 @@ const FeedForm = () => {
             </button>
         </form>
     )
+}
+
+FeedForm.propTypes = {
+    onSubmit: PropTypes.func
 }
 
 export default FeedForm

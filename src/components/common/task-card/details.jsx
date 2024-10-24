@@ -8,11 +8,13 @@ const Details = ({ task = {} }) => {
     const label = useMemo(() => {
         switch (task.type) {
             case 'diaper':
-                return capitalize(task.state)
+                return `${capitalize(task.state)}${
+                    task.moreDetails !== 'none' ? ` (${task.moreDetails})` : ''
+                }`
             case 'sleeping':
                 return 'Sleeping'
             case 'feeding':
-                return `${task.milk} ${shortUnit(task.unit)}`
+                return `${task.milk} ${shortUnit(task.unit)}${task.source ? ` (${task.source})` : ''}`
             default:
                 return ''
         }

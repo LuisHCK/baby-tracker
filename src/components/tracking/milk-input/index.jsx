@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import Picker from 'react-mobile-picker'
 import classNames from 'classnames'
 
-const MilkInput = () => {
+const MilkInput = ({ onChange = () => {} }) => {
     const [pickerValue, setPickerValue] = useState({ unit: 10, decimal: 0 })
     const { units } = useContext(AppContext)
 
@@ -23,13 +23,18 @@ const MilkInput = () => {
             } else if (units.liquidUnit === 'uk fl-oz' || units.liquidUnit === 'us fl-oz') {
                 return {
                     units: generateArrayFromRange(scale.min, scale.max, scale.step),
-                    decimals: generateArrayFromRange(0, 2, 0.5)
+                    decimals: []
                 }
             }
         }
 
         return { units: [], decimals: [] }
     }, [units, scale])
+
+    const handleChange = ({ unit, decimal }) => {
+        setPickerValue({ unit, decimal })
+        onChange?.({ unit })
+    }
 
     const renderUnits = useMemo(() => {
         return inputRange.units.map((unit) => (
@@ -52,7 +57,7 @@ const MilkInput = () => {
         <div className={styles.container}>
             <Picker
                 value={pickerValue}
-                onChange={setPickerValue}
+                onChange={handleChange}
                 wheelMode="natural"
                 className="w-100"
             >
@@ -65,8 +70,7 @@ const MilkInput = () => {
 }
 
 MilkInput.propTypes = {
-    register: PropTypes.func.isRequired,
-    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    onChange: PropTypes.func
 }
 
 export default MilkInput

@@ -12,6 +12,7 @@ export const AppContenxtProvider = ({ children }) => {
     const [currentTask, setCurrentTask] = useState(null)
     const [settings, setSettings] = useState({})
     const [units, setUnits] = useState({})
+    const [sleepTimer, setSleepTimer] = useState(null)
 
     useEffect(() => {
         getSettings('babyInfo').then((res) => res && setBabyInfo(res.value))
@@ -28,7 +29,9 @@ export const AppContenxtProvider = ({ children }) => {
         settings,
         setSettings,
         units,
-        setUnits
+        setUnits,
+        sleepTimer,
+        setSleepTimer
     }
 
     return <AppContext.Provider value={state}>{children}</AppContext.Provider>
