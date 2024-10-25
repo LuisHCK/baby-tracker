@@ -5,6 +5,7 @@ import App from './App.jsx'
 import './index.scss'
 import { AppContenxtProvider } from './context/app.jsx'
 import { Toaster } from 'react-hot-toast'
+import { DialogProvider } from './context/dialog-provider.jsx'
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -17,9 +18,11 @@ createRoot(document.getElementById('root')).render(
         <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
             <AppContenxtProvider>
                 <div>
-                    <Toaster position="bottom-center"/>
+                    <Toaster position="bottom-center" />
                 </div>
-                <App />
+                <DialogProvider>
+                    <App />
+                </DialogProvider>
             </AppContenxtProvider>
         </ClerkProvider>
     </StrictMode>

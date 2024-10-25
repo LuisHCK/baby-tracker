@@ -5,6 +5,7 @@ import Modal from '@/components/modal'
 import DiaperForm from './form'
 import StickyBottomButton from '@/components/sticky-bottom-button'
 import TaskList from '@/components/task-list'
+import { TASK_TYPES } from '@/lib/constansts'
 
 const DiaperView = () => {
     const [history, setHistory] = useState([])
@@ -17,7 +18,7 @@ const DiaperView = () => {
 
     const getHistory = async () => {
         setIsLoading(true)
-        const res = await getHistoryByType('diaper')
+        const res = await getHistoryByType(TASK_TYPES.DIAPER)
         setIsLoading(false)
 
         if (res) {

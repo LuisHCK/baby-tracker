@@ -29,7 +29,11 @@ $icon-size: 48px;
     }
 
     &:global(.diaper) {
-        background-color: transparentize($color: $secondary-color, $amount: 0.5);
+        background-color: transparentize($color: $purple, $amount: 0.5);
+    }
+
+    &:global(.feeding) {
+        background-color: transparentize($color: $orange, $amount: 0.5);
     }
 }
 

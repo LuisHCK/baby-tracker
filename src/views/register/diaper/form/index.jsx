@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { capitalize } from '@/utils/tools'
 import { addHistory } from '@/controllers/history'
 import toast from 'react-hot-toast'
+import { TASK_TYPES } from '@/lib/constansts'
 
 const moreDetailsLabels = {
     wet: ['none', 'light', 'medium', 'full'],
@@ -28,7 +29,7 @@ const DiaperForm = ({ onSubmit = () => {} }) => {
     const saveDiaper = async (data) => {
         const response = await addHistory({
             ...data,
-            type: 'diaper',
+            type: TASK_TYPES.DIAPER,
             endedAt: parse(data.endedAt, `yyyy-MM-dd'T'HH:mm`, new Date()).toISOString()
         })
         if (response) {

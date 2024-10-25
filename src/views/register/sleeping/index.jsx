@@ -1,15 +1,19 @@
 import { getHistoryByType } from '@/controllers/history'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useContext, useEffect, useMemo, useState } from 'react'
 import NoResults from '@/components/no-results'
 import Modal from '@/components/modal'
 import SleepingForm from './form'
 import StickyBottomButton from '@/components/sticky-bottom-button'
 import TaskList from '@/components/task-list'
+import { TASK_TYPES } from '@/lib/constansts'
+import { AppContext } from '@/context/app'
+import InProgress from '@/components/dashboard/in-progress'
 
 const SleepingView = () => {
     const [history, setHistory] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const { sleepTimer } = useContext(AppContext)
 
     const toggleModal = () => {
         setIsModalOpen((prev) => !prev)
@@ -17,7 +21,7 @@ const SleepingView = () => {
 
     const getHistory = async () => {
         setIsLoading(true)
-        const res = await getHistoryByType('sleeping')
+        const res = await getHistoryByType(TASK_TYPES.SLEEPING)
         setIsLoading(false)
 
         if (res) {
@@ -34,12 +38,25 @@ const SleepingView = () => {
         getHistory()
     }, [])
 
+    const renderInProgress = useMemo(() => {
+        if (sleepTimer) {
+            return (
+                <div className="mb-4">
+                    <h6>In progress</h6>
+                    <InProgress onSave={getHistory} />
+                </div>
+            )
+        }
+    }, [sleepTimer])
+
     return (
         <Fragment>
             <div>
+                {renderInProgress}
+
                 <TaskList tasks={history} />
 
-                {!isLoading && !history.length && <NoResults />}
+                {!isLoading && !history.length && !sleepTimer && <NoResults />}
             </div>
 
             <Modal

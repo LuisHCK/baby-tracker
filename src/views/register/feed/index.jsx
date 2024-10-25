@@ -6,6 +6,7 @@ import Modal from '@/components/modal'
 import FeedForm from './form'
 import StickyBottomButton from '@/components/sticky-bottom-button'
 import TaskList from '@/components/task-list'
+import { TASK_TYPES } from '@/lib/constansts'
 
 const FeedView = () => {
     const [history, setHistory] = useState([])
@@ -18,7 +19,7 @@ const FeedView = () => {
 
     const getHistory = async () => {
         setIsLoading(true)
-        const res = await getHistoryByType('feeding')
+        const res = await getHistoryByType(TASK_TYPES.FEEDING)
         setIsLoading(false)
 
         if (res) {

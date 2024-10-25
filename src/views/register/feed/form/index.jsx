@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form'
 import { addHistory } from '@/controllers/history'
 import toast from 'react-hot-toast'
 import { AppContext } from '@/context/app'
+import { TASK_TYPES } from '@/lib/constansts'
 
 const FeedForm = ({ onSubmit = () => {} }) => {
     const {
@@ -26,7 +27,7 @@ const FeedForm = ({ onSubmit = () => {} }) => {
     const saveData = async (data) => {
         const response = await addHistory({
             ...data,
-            type: 'feeding',
+            type: TASK_TYPES.FEEDING,
             endedAt: parse(data.feedingTime, `yyyy-MM-dd'T'HH:mm`, new Date()).toISOString(),
             unit: units?.liquidUnit
         })

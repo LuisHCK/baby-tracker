@@ -14,19 +14,20 @@ import classNames from 'classnames'
 import { useMemo } from 'react'
 import { formatDuration } from '@/utils/tools'
 import Details from './details'
+import { TASK_TYPES } from '@/lib/constansts'
 
 const TaskCard = ({ task }) => {
     const taskDetails = useMemo(() => {
         switch (task.type) {
-            case 'diaper':
+            case TASK_TYPES.DIAPER:
                 return {
                     icon: <IconDiaper />,
                     label: 'Diaper',
                     details: <Details task={task} />
                 }
-            case 'sleeping':
-                return { icon: <IconZzz />, label: 'Sleeping' }
-            case 'feeding':
+            case TASK_TYPES.SLEEPING:
+                return { icon: <IconZzz />, label: 'Sleeping', details: <Details task={task} /> }
+            case TASK_TYPES.FEEDING:
                 return {
                     icon: <IconBabyBottle />,
                     label: 'Feeding',
@@ -59,7 +60,7 @@ const TaskCard = ({ task }) => {
 
                     <div className={styles.taskDate}>
                         <IconCalendar width={14} />
-                        {format(parseISO(task.endedAt), 'hh:mm aaa LLL d')}
+                        {task.endedAt && format(parseISO(task.endedAt), 'hh:mm aaa LLL d')}
                     </div>
                 </div>
                 {!!duration && (

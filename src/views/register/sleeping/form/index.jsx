@@ -1,85 +1,52 @@
-import { intervalToDuration } from 'date-fns'
 import styles from './styles.module.scss'
-import { useEffect, useState } from 'react'
-import { toDoubleDigit } from '@/utils/tools'
+import { useContext, useEffect, useState } from 'react'
+import { AppContext } from '@/context/app'
+import { durationFormat } from '@/utils/time'
 
 let INTERVAL = null
 
 const SleepingForm = () => {
-    const [task, setTask] = useState(
-        localStorage.getItem('inProgressTask') || {
-            startedAt: new Date().toISOString(),
-            endedAt: new Date().toISOString()
-        }
-    )
-    const [status, setStatus] = useState('stopped')
-    const [timeCounter, setTimeCounter] = useState(0)
+    const { sleepTimer, setSleepTimer } = useContext(AppContext)
+    const [timeCounter, setTimeCounter] = useState('00h:00m:00s')
 
     const startTimer = () => {
-        if (status === 'stopped') setTask({ ...task, startedAt: new Date().toISOString() })
-        setStatus('started')
-    }
-
-    const pauseTimer = () => {
-        setStatus('paused')
-        clearInterval(INTERVAL)
+        const startTime = new Date()
+        localStorage.setItem('sleepTimer', startTime.toISOString())
+        setSleepTimer(startTime)
     }
 
     const stopTimer = () => {
-        setStatus('stopped')
-        clearInterval(INTERVAL)
-        setTimeCounter(0)
+        if (confirm('Are you sure you want to stop the sleep timer?')) {
+            setSleepTimer(null)
+        }
     }
 
     const toggleTimer = () => {
-        if (status === 'started') {
-            pauseTimer()
+        if (sleepTimer) {
+            stopTimer()
         } else {
             startTimer()
         }
     }
 
     useEffect(() => {
-        if (!task) return
-
-        if (status === 'stopped') {
-            clearInterval(INTERVAL)
-            return
-        }
-
-        if (status === 'paused') {
-            clearInterval(INTERVAL)
-            return
-        }
+        if (!sleepTimer) return
 
         INTERVAL = setInterval(() => {
-            setTimeCounter((prev) => prev + 1)
+            setTimeCounter(durationFormat(sleepTimer, new Date()))
         }, 1000)
 
         return () => {
             clearInterval(INTERVAL)
         }
-    }, [timeCounter, status, task])
-
-    const displayTimer = () => {
-        const duration = intervalToDuration({ start: 0, end: timeCounter * 1000 })
-        const h = toDoubleDigit(duration.hours)
-        const m = toDoubleDigit(duration.minutes)
-        const s = toDoubleDigit(duration.seconds)
-        return `${h}:${m}:${s}`
-    }
+    }, [sleepTimer])
 
     return (
         <div className={styles.container}>
-            <p className={styles.timer}>{displayTimer()}</p>
-            <div className="d-flex flex-gap-1">
-                <button onClick={toggleTimer}>{status === 'started' ? 'Pause' : 'Start'}</button>
-                <button
-                    disabled={status === 'stopped'}
-                    className="outline contrast"
-                    onClick={stopTimer}
-                >
-                    Stop
+            <p className={styles.timer}>{timeCounter}</p>
+            <div className="d-flex w-100">
+                <button className="w-100 secondary" onClick={toggleTimer}>
+                    {sleepTimer ? 'Stop' : 'Start'}
                 </button>
             </div>
         </div>

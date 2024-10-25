@@ -38,7 +38,7 @@ export const formatDuration = (duration = {}) => {
         result += `${duration.seconds}s`
     }
 
-    return result
+    return result || '0s'
 }
 
 /**

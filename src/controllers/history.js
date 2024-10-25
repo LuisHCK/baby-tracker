@@ -1,7 +1,23 @@
 import database from '@/database'
 
+/**
+ * Type definitions
+ * @typedef {Object} History
+ * @property {string} id
+ * @property {string} type
+ * @property {string} label
+ * @property {string} startedAt
+ * @property {string} endedAt
+ * @property {string} createdAt
+ */
+
 const History = database.table('history')
 
+/**
+ * Get task history
+ * @param {number} limit Maximum number of records to return
+ * @returns {Promise<History[]>} Array of history records
+ */
 export const getHistory = async (limit = 10) => {
     const history = await History.orderBy('createdAt').reverse().limit(limit).toArray()
     return history
@@ -30,6 +46,11 @@ export const getLatestHistory = async () => {
     }
 }
 
+/**
+ * Register a new task
+ * @param {History} data
+ * @returns {Promise<History>}
+ */
 export const addHistory = async (data) => {
     try {
         const history = await History.add({ ...data, createdAt: new Date().toISOString() })
