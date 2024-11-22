@@ -49,12 +49,17 @@ const DashboardView = () => {
         return !isLoading && <NoResults label="No history found" />
     }, [latestHistory, isLoading])
 
-    const renderInProgress = !!sleepTimer && (
-        <Fragment>
-            <h3 className={styles.sectionTitle}>In progress</h3>
-            <InProgress onSave={loadHistory} />
-        </Fragment>
-    )
+    const renderInProgress = useMemo(() => {
+        if (sleepTimer) {
+            return (
+                <Fragment>
+                    <h3 className={styles.sectionTitle}>In progress</h3>
+                    <InProgress onSave={loadHistory} />
+                </Fragment>
+            )
+        }
+        return null
+    }, [sleepTimer])
 
     return (
         <div className="page mt-0">

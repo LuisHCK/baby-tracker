@@ -2,7 +2,7 @@ import Card from '@/components/common/card'
 import styles from './styles.module.scss'
 import PropTypes from 'prop-types'
 import { IconClock, IconPlayerStopFilled, IconZzz } from '@tabler/icons-react'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { AppContext } from '@/context/app'
 import { durationFormat } from '@/utils/time'
 import { addHistory } from '@/controllers/history'
@@ -10,12 +10,16 @@ import useDialog from '@/hooks/use-dialog'
 import { isDate } from 'date-fns'
 import { TASK_TYPES } from '@/lib/constansts'
 
-let INTERVAL = null
-
 const InProgress = ({ onSave = () => {} }) => {
     const { sleepTimer, setSleepTimer } = useContext(AppContext)
     const [timeCounter, setTimeCounter] = useState('00s')
     const { openDialog } = useDialog()
+    const intervalId = useRef(null)
+
+    const clearStoredTimer = () => {
+        localStorage.removeItem('sleepTimer')
+        setSleepTimer(null)
+    }
 
     const saveTask = async () => {
         const newTask = await addHistory({
@@ -26,7 +30,7 @@ const InProgress = ({ onSave = () => {} }) => {
 
         if (newTask) {
             onSave?.(newTask)
-            localStorage.removeItem('sleepTimer')
+            clearStoredTimer()
         }
     }
 
@@ -37,10 +41,9 @@ const InProgress = ({ onSave = () => {} }) => {
             cancelText: `Don't save`,
             confirmText: 'Save',
             onDismiss: () => {
-                setSleepTimer(null)
+                clearStoredTimer()
             },
             onConfirm: () => {
-                setSleepTimer(null)
                 saveTask()
             }
         })
@@ -51,15 +54,15 @@ const InProgress = ({ onSave = () => {} }) => {
             return
         }
 
-        INTERVAL = setInterval(() => {
+        intervalId.current = setInterval(() => {
             const val = durationFormat(sleepTimer, new Date())
             setTimeCounter(val)
         }, 1000)
 
         return () => {
-            clearInterval(INTERVAL)
+            clearInterval(intervalId.current)
         }
-    }, [sleepTimer])
+    }, [sleepTimer, intervalId])
 
     return (
         <Card className={styles.container}>
