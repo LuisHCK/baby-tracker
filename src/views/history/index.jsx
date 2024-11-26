@@ -22,7 +22,6 @@ const HistoryView = () => {
 
     return (
         <div className="page container pt-4">
-            <h3>History</h3>
             <TaskList tasks={history} />
 
             {!isLoading && !history.length && <NoResults />}

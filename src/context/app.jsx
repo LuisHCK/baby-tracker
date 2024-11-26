@@ -1,9 +1,11 @@
 import { createContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { getSettings } from '@/controllers/settings'
+import { PHOTO_KEY } from '@/lib/constansts'
 
 const initialState = {
-    sleepTimer: localStorage.getItem('sleepTimer') || null
+    sleepTimer: localStorage.getItem('sleepTimer') || null,
+    photo: window.localStorage.getItem(PHOTO_KEY)
 }
 
 export const AppContext = createContext(initialState)
@@ -16,6 +18,7 @@ export const AppContenxtProvider = ({ children }) => {
     const [units, setUnits] = useState({})
     const [sleepTimer, setSleepTimer] = useState(initialState.sleepTimer)
     const [taskHistory, setTaskHistory] = useState([])
+    const [photo, setPhoto] = useState(initialState.photo)
 
     useEffect(() => {
         getSettings('babyInfo').then((res) => res && setBabyInfo(res.value))
@@ -36,7 +39,9 @@ export const AppContenxtProvider = ({ children }) => {
         sleepTimer,
         setSleepTimer,
         taskHistory,
-        setTaskHistory
+        setTaskHistory,
+        photo,
+        setPhoto
     }
 
     return <AppContext.Provider value={state}>{children}</AppContext.Provider>

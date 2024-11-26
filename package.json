@@ -13,6 +13,7 @@
     "@clerk/clerk-react": "^5.4.3",
     "@supabase/supabase-js": "^2.45.2",
     "@tabler/icons-react": "^3.14.0",
+    "chart.js": "^4.4.6",
     "classnames": "^2.5.1",
     "date-fns": "^3.6.0",
     "dexie": "^4.0.8",

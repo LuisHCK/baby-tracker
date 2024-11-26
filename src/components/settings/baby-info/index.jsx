@@ -3,17 +3,25 @@ import styles from './styles.module.scss'
 import { saveSettings } from '@/controllers/settings'
 import { useContext, useEffect } from 'react'
 import { AppContext } from '@/context/app'
+import { resizeImage } from '@/utils/images'
 
 let SAVE_TIMEOUT = null
 
 const BabyInfoForm = () => {
     const { register, handleSubmit, watch } = useForm()
-    const { babyInfo, setBabyInfo } = useContext(AppContext)
+    const { babyInfo, setBabyInfo, photo, setPhoto } = useContext(AppContext)
 
     const saveData = async (data) => {
         const res = await saveSettings('babyInfo', data)
         if (res) {
             setBabyInfo(res.value)
+        }
+    }
+
+    const savePhoto = (encodedImage = '') => {
+        if (babyInfo) {
+            window.localStorage.setItem('photo', encodedImage)
+            setPhoto(encodedImage)
         }
     }
 
@@ -69,6 +77,23 @@ const BabyInfoForm = () => {
                     />
                 </div>
             </div>
+            {babyInfo?.name && (
+                <div className={styles.formControl}>
+                    <label htmlFor="photo">Photo</label>
+                    {photo && <img src={photo} alt="Photo" className={styles.photo} />}
+
+                    <input
+                        type="file"
+                        name="photo"
+                        accept="image/*"
+                        onChange={(e) => {
+                            resizeImage(e.target.files[0], 150, 150, (e) => {
+                                savePhoto(e)
+                            })
+                        }}
+                    />
+                </div>
+            )}
         </form>
     )
 }

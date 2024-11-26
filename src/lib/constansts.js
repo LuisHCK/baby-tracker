@@ -3,3 +3,5 @@ export const TASK_TYPES = {
     DIAPER: 'diaper',
     FEEDING: 'feeding'
 }
+
+export const PHOTO_KEY = 'photo'

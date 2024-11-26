@@ -18,15 +18,16 @@ function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
  * @param {File} file
  * @param {HTMLImageElement} target
  */
-export function resizeImage(file, target, MAX_WIDTH = 100, MAX_HEIGHT = 100) {
+export function resizeImage(file, MAX_WIDTH = 100, MAX_HEIGHT = 100, callback = () => {}) {
     const reader = new FileReader()
     reader.readAsDataURL(file)
+    const target = document.createElement('img')
 
     reader.onloadend = function (e) {
         let image = new Image()
+        const canvas = document.createElement('canvas')
 
         image.onload = function () {
-            const canvas = document.createElement('canvas')
             // Calculate the aspect ratio of the image
             const { width, height } = calculateAspectRatioFit(
                 image.width,
@@ -42,8 +43,7 @@ export function resizeImage(file, target, MAX_WIDTH = 100, MAX_HEIGHT = 100) {
 
             // Resize the image to the desired size
             target.src = canvas.toDataURL('image/jpeg', 0.7)
-            target.classList.remove('skeleton-block')
         }
-        image.src = e.target.result
+        callback(e.target.result)
     }
 }

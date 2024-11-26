@@ -4,7 +4,7 @@ import { AppContext } from '@/context/app'
 import { differenceInMonths, parse } from 'date-fns'
 
 const BabyProfile = () => {
-    const { babyInfo, units } = useContext(AppContext)
+    const { babyInfo, units, photo } = useContext(AppContext)
     const age = useMemo(() => {
         if (!babyInfo?.birthday) return
 
@@ -15,7 +15,7 @@ const BabyProfile = () => {
     return (
         <div className={styles.container}>
             <div className={styles.photoContainer}>
-                <img src="https://placehold.co/400x400?text=Baby" alt="baby" />
+                <img src={photo} alt="Photo" className={styles.photo} />
             </div>
             <div className={styles.summary}>
                 <h2 className={styles.babyName}>{babyInfo?.name}</h2>
