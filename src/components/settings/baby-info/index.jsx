@@ -1,20 +1,22 @@
 import { useForm } from 'react-hook-form'
-import styles from './styles.module.scss'
+import toast from 'react-hot-toast'
 import { saveSettings } from '@/controllers/settings'
 import { useContext, useEffect } from 'react'
 import { AppContext } from '@/context/app'
 import { resizeImage } from '@/utils/images'
+import styles from './styles.module.scss'
 
 let SAVE_TIMEOUT = null
 
 const BabyInfoForm = () => {
     const { register, handleSubmit, watch } = useForm()
-    const { babyInfo, setBabyInfo, photo, setPhoto } = useContext(AppContext)
+    const { babyInfo, setBabyInfo, photo, setPhoto, units } = useContext(AppContext)
 
     const saveData = async (data) => {
         const res = await saveSettings('babyInfo', data)
         if (res) {
             setBabyInfo(res.value)
+            toast.success('Baby info saved successfully')
         }
     }
 
@@ -22,6 +24,7 @@ const BabyInfoForm = () => {
         if (babyInfo) {
             window.localStorage.setItem('photo', encodedImage)
             setPhoto(encodedImage)
+            toast.success('Photo saved successfully')
         }
     }
 
@@ -50,7 +53,7 @@ const BabyInfoForm = () => {
             </div>
             <div className="d-flex flex-gap-2">
                 <div className={styles.formControl}>
-                    <label htmlFor="weight">Weight</label>
+                    <label htmlFor="weight">Weight ({units?.weightUnit})</label>
                     <input
                         type="number"
                         name="weight"
@@ -59,7 +62,7 @@ const BabyInfoForm = () => {
                     />
                 </div>
                 <div className={styles.formControl}>
-                    <label htmlFor="height">Height</label>
+                    <label htmlFor="height">Height ({units?.lengthUnit})</label>
                     <input
                         type="number"
                         name="height"
@@ -67,15 +70,15 @@ const BabyInfoForm = () => {
                         {...register('height')}
                     />
                 </div>
-                <div className={styles.formControl}>
-                    <label htmlFor="birthday">Birthday</label>
-                    <input
-                        type="date"
-                        name="birthday"
-                        defaultValue={babyInfo?.birthday}
-                        {...register('birthday')}
-                    />
-                </div>
+            </div>
+            <div className={styles.formControl}>
+                <label htmlFor="birthday">Birthday</label>
+                <input
+                    type="date"
+                    name="birthday"
+                    defaultValue={babyInfo?.birthday}
+                    {...register('birthday')}
+                />
             </div>
             {babyInfo?.name && (
                 <div className={styles.formControl}>

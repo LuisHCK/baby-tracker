@@ -27,7 +27,7 @@ const buttons = [
     }
 ]
 
-const pagesHidden = ['/register']
+const pagesHidden = ['/register', '/settings']
 
 const Navigation = () => {
     const [location] = useLocation()

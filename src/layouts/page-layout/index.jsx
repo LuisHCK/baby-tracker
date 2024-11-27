@@ -1,10 +1,18 @@
 import PropTypes from 'prop-types'
 import styles from './styles.module.scss'
 import { IconArrowLeft } from '@tabler/icons-react'
+import { useLocation } from 'wouter'
 
-const PageLayout = ({ children, title = 'Baby Tracker' }) => {
+const PageLayout = ({ children, title = 'Baby Tracker', redirectToHome = false }) => {
+    // eslint-disable-next-line no-unused-vars
+    const [_, navigate] = useLocation()
+
     const goBack = () => {
-        window.history.back()
+        if (redirectToHome) {
+            navigate('~/app')
+        } else {
+            window.history.back()
+        }
     }
 
     return (
@@ -22,7 +30,8 @@ const PageLayout = ({ children, title = 'Baby Tracker' }) => {
 
 PageLayout.propTypes = {
     children: PropTypes.node,
-    title: PropTypes.string
+    title: PropTypes.string,
+    redirectToHome: PropTypes.bool
 }
 
 export default PageLayout

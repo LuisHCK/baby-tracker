@@ -1,22 +1,28 @@
+import Card from '@/components/common/card'
 import AppSettingsForm from '@/components/settings/app-form'
 import BabyInfoForm from '@/components/settings/baby-info'
+import PageLayout from '@/layouts/page-layout'
 import { Link } from 'wouter'
 
 const SettingsPage = () => {
     return (
-        <div className="container pt-4">
-            <h2>Baby information</h2>
-            <BabyInfoForm />
+        <PageLayout title="Settings" redirectToHome>
+            <Card>
+                <h3>Baby information</h3>
+                <BabyInfoForm />
+            </Card>
 
-            <h2>App settings</h2>
-            <AppSettingsForm />
+            <Card className="mt-4">
+                <h3>App settings</h3>
+                <AppSettingsForm />
+            </Card>
 
-            <div className="d-flex">
+            <div className="d-flex mt-4">
                 <Link type="button" to="/" className="w-100 btn btn-primary">
                     Close
                 </Link>
             </div>
-        </div>
+        </PageLayout>
     )
 }
 
