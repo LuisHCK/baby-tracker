@@ -1,11 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { ClerkProvider } from '@clerk/clerk-react'
-import App from './App.jsx'
-import './index.scss'
 import { AppContenxtProvider } from './context/app.jsx'
 import { Toaster } from 'react-hot-toast'
 import { DialogProvider } from './context/dialog-provider.jsx'
+import App from './App.jsx'
+import './index.scss'
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 

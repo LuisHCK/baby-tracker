@@ -1,5 +1,6 @@
 import IconBabyBottle from '@tabler/icons-react/dist/esm/icons/IconBabyBottle'
 import IconDiaper from '@tabler/icons-react/dist/esm/icons/IconDiaper'
+import IconZzz from '@tabler/icons-react/dist/esm/icons/IconZzz'
 import styles from './styles.module.scss'
 import classNames from 'classnames'
 import { Link } from 'wouter'

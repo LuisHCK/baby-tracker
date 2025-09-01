@@ -11,11 +11,16 @@ import LineChart from '@/components/charts/line-chart'
 import { format, parseISO } from 'date-fns'
 import classNames from 'classnames'
 
+const ACTIVE_TAB = {
+    HISTORY: 'history',
+    CHARTS: 'charts'
+}
+
 const FeedView = () => {
     const [history, setHistory] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [feedModalIsOpen, setFeedModalIsOpen] = useState(false)
-    const [activeTab, setActiveTab] = useState('charts') // 'charts' or 'history'
+    const [activeTab, setActiveTab] = useState(ACTIVE_TAB.HISTORY)
 
     const toggleFeedModal = () => {
         setFeedModalIsOpen((prev) => !prev)
@@ -54,15 +59,15 @@ const FeedView = () => {
             <div className={styles.tabs}>
                 <button
                     type="button"
-                    className={classNames({ secondary: activeTab === 'history' })}
-                    onClick={() => setActiveTab('history')}
+                    className={classNames({ secondary: activeTab === ACTIVE_TAB.HISTORY })}
+                    onClick={() => setActiveTab(ACTIVE_TAB.HISTORY)}
                 >
                     History
                 </button>
                 <button
                     type="button"
-                    className={classNames({ secondary: activeTab === 'charts' })}
-                    onClick={() => setActiveTab('charts')}
+                    className={classNames({ secondary: activeTab === ACTIVE_TAB.CHARTS })}
+                    onClick={() => setActiveTab(ACTIVE_TAB.CHARTS)}
                 >
                     Charts
                 </button>

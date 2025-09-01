@@ -30,8 +30,6 @@ export const AppContenxtProvider = ({ children }) => {
         getSettings('units').then((res) => res?.value && setUnits(res.value))
     }, [])
 
-    console.log(units)
-
     const state = {
         babyInfo,
         setBabyInfo,
