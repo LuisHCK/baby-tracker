@@ -20,7 +20,9 @@ RUN bun run build
 # --- Production ---
 FROM oven/bun:alpine AS production
 WORKDIR /usr/src/app
+# Only copy the built files and public assets
 COPY --from=build /usr/src/app/dist ./dist
+COPY --from=build /usr/src/app/public ./public
 
 # Serve static files
 EXPOSE 3000
