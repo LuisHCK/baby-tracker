@@ -1,3 +1,4 @@
+@use "sass:string";
 $spacer: 1rem !default;
 
 $spacers: (
@@ -33,13 +34,13 @@ $sides: (top, bottom, left, right);
 @each $key, $value in $spacers {
     @each $side in $sides {
         // generate m* classes
-        .m#{str-slice($side, 0, 1)}-#{$key} {
+        .m#{string.slice($side, 0, 1)}-#{$key} {
             margin-#{$side}: #{$value} !important;
         }
 
         // generate p* classes excluding key = auto
         @if $key != auto {
-            .p#{str-slice($side, 0, 1)}-#{$key} {
+            .p#{string.slice($side, 0, 1)}-#{$key} {
                 padding-#{$side}: #{$value} !important;
             }
         }

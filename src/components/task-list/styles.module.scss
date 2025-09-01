@@ -1,8 +1,8 @@
 @use 'sass:math';
-@import '@/styles/colors';
+@use '../../styles/colors' as colors;
 
 $border-color: transparentize(
-    $color: $dark-blue,
+    $color: colors.$dark-blue,
     $amount: 0.8
 );
 $base: 1rem;
@@ -41,7 +41,7 @@ $half-base: math.div($base, 2);
             min-width: $base;
             height: $base;
             max-width: $base;
-            background-color: $white;
+            background-color: colors.$white;
             border-radius: $base;
             border: 2px solid $border-color;
         }

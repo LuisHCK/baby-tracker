@@ -1,4 +1,5 @@
-import { IconBabyBottle, IconDiaper, IconZzz } from '@tabler/icons-react'
+import IconBabyBottle from '@tabler/icons-react/dist/esm/icons/IconBabyBottle'
+import IconDiaper from '@tabler/icons-react/dist/esm/icons/IconDiaper'
 import styles from './styles.module.scss'
 import classNames from 'classnames'
 import { Link } from 'wouter'

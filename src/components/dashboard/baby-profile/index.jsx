@@ -12,10 +12,19 @@ const BabyProfile = () => {
         return differenceInMonths(new Date(), birthday)
     }, [babyInfo])
 
+    const getCurrentPhoto = () => {
+        if (photo) return photo
+
+        if (babyInfo?.gender === 'male') return '/teddy-1.webp'
+        if (babyInfo?.gender === 'female') return '/teddy-2.webp'
+
+        return '/teddy-1.webp'
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.photoContainer}>
-                <img src={photo} alt="Photo" className={styles.photo} />
+                <img src={getCurrentPhoto()} alt={`Photo of ${babyInfo?.name}`} className={styles.photo} />
             </div>
             <div className={styles.summary}>
                 <h2 className={styles.babyName}>{babyInfo?.name}</h2>

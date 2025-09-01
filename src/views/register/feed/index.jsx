@@ -9,11 +9,13 @@ import TaskList from '@/components/task-list'
 import { TASK_TYPES } from '@/lib/constansts'
 import LineChart from '@/components/charts/line-chart'
 import { format, parseISO } from 'date-fns'
+import classNames from 'classnames'
 
 const FeedView = () => {
     const [history, setHistory] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [feedModalIsOpen, setFeedModalIsOpen] = useState(false)
+    const [activeTab, setActiveTab] = useState('charts') // 'charts' or 'history'
 
     const toggleFeedModal = () => {
         setFeedModalIsOpen((prev) => !prev)
@@ -48,26 +50,54 @@ const FeedView = () => {
 
     return (
         <Fragment>
-            <LineChart
-                data={{
-                    labels: history.reverse().map((item) => parseTaskDate(item.endedAt)),
-                    datasets: [
-                        {
-                            label: 'Feed',
-                            data: history.reverse().map((item) => item.milk),
-                            borderColor: '#fe6e63',
-                            backgroundColor: '#fe6e63',
-                            fill: false
-                        }
-                    ]
-                }}
-            />
-
-            <div className={styles.feedLayout}>
-                <TaskList tasks={history} />
-
-                {!isLoading && !history.length && <NoResults />}
+            {/* Tabs */}
+            <div className={styles.tabs}>
+                <button
+                    type="button"
+                    className={classNames({ secondary: activeTab === 'history' })}
+                    onClick={() => setActiveTab('history')}
+                >
+                    History
+                </button>
+                <button
+                    type="button"
+                    className={classNames({ secondary: activeTab === 'charts' })}
+                    onClick={() => setActiveTab('charts')}
+                >
+                    Charts
+                </button>
             </div>
+
+            {/* Tab Content */}
+            {activeTab === 'history' && (
+                <div className={styles.feedLayout}>
+                    <TaskList tasks={history} />
+                    {!isLoading && !history.length && <NoResults />}
+                </div>
+            )}
+
+            {activeTab === 'charts' && (
+                <LineChart
+                    data={{
+                        labels: history
+                            .slice()
+                            .reverse()
+                            .map((item) => parseTaskDate(item.endedAt)),
+                        datasets: [
+                            {
+                                label: 'Feed',
+                                data: history
+                                    .slice()
+                                    .reverse()
+                                    .map((item) => item.milk),
+                                borderColor: '#fe6e63',
+                                backgroundColor: '#fe6e63',
+                                fill: false
+                            }
+                        ]
+                    }}
+                />
+            )}
 
             <Modal
                 isOpen={feedModalIsOpen}

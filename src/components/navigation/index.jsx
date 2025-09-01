@@ -1,4 +1,7 @@
-import { IconHistory, IconHome, IconSettings, IconUserCircle } from '@tabler/icons-react'
+import IconHome from '@tabler/icons-react/dist/esm/icons/IconHome'
+import IconHistory from '@tabler/icons-react/dist/esm/icons/IconHistory'
+import IconUserCircle from '@tabler/icons-react/dist/esm/icons/IconUserCircle'
+import IconSettings from '@tabler/icons-react/dist/esm/icons/IconSettings'
 import styles from './styles.module.scss'
 import { Link, useLocation } from 'wouter'
 import classNames from 'classnames'

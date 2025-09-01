@@ -1,5 +1,5 @@
 # Base image
-FROM oven/bun:1-alpine AS base
+FROM oven/bun:alpine AS base
 WORKDIR /usr/src/app
 
 # Install dependencies
@@ -18,7 +18,7 @@ COPY . .
 RUN bun run build
 
 # --- Production ---
-FROM oven/bun:1-alpine AS production
+FROM oven/bun:alpine AS production
 WORKDIR /usr/src/app
 COPY --from=build /usr/src/app/dist ./dist
 

@@ -1,4 +1,5 @@
-@import '@/styles/colors';
+@use "sass:color";
+@use '../../../styles/colors' as colors;
 
 $border-radius: 1.5rem;
 $transparency: 0.8;
@@ -6,7 +7,7 @@ $transparency: 0.8;
 .container {
     position: relative;
     z-index: 1;
-    background-color: $white;
+    background-color: colors.$white;
     padding: 1rem;
     border-radius: $border-radius;
 
@@ -33,16 +34,16 @@ $transparency: 0.8;
 }
 
 .variantRed {
-    background-color: transparentize($color: $light-red, $amount: $transparency);
-    color: $light-red;
+    background-color: color.adjust($color: colors.$light-red, $alpha: -$transparency);
+    color: colors.$light-red;
 }
 
 .variantOrange {
-    background-color: transparentize($color: $orange, $amount: $transparency);
-    color: $orange;
+    background-color: color.adjust($color: colors.$orange, $alpha: -$transparency);
+    color: colors.$orange;
 }
 
 .variantPurple {
-    background-color: transparentize($color: $purple, $amount: $transparency);
-    color: $purple;
+    background-color: color.adjust($color: colors.$purple, $alpha: -$transparency);
+    color: colors.$purple;
 }

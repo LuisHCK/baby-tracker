@@ -5,7 +5,12 @@ import { PHOTO_KEY } from '@/lib/constansts'
 
 const initialState = {
     sleepTimer: localStorage.getItem('sleepTimer') || null,
-    photo: window.localStorage.getItem(PHOTO_KEY)
+    photo: window.localStorage.getItem(PHOTO_KEY),
+    units: {
+        liquidUnit: 'us fl-oz',
+        lengthUnit: 'in',
+        weightUnit: 'lb'
+    }
 }
 
 export const AppContext = createContext(initialState)
@@ -15,15 +20,17 @@ export const AppContenxtProvider = ({ children }) => {
     const [availableTasks, setAvailableTasks] = useState([])
     const [currentTask, setCurrentTask] = useState(null)
     const [settings, setSettings] = useState({})
-    const [units, setUnits] = useState({})
+    const [units, setUnits] = useState(initialState.units)
     const [sleepTimer, setSleepTimer] = useState(initialState.sleepTimer)
     const [taskHistory, setTaskHistory] = useState([])
     const [photo, setPhoto] = useState(initialState.photo)
 
     useEffect(() => {
         getSettings('babyInfo').then((res) => res && setBabyInfo(res.value))
-        getSettings('units').then((res) => res && setUnits(res.value))
+        getSettings('units').then((res) => res?.value && setUnits(res.value))
     }, [])
+
+    console.log(units)
 
     const state = {
         babyInfo,

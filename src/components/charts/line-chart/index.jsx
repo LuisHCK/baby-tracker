@@ -1,22 +1,16 @@
 import { useCallback, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
-import {
-    Chart,
-    LineController,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement
-} from 'chart.js'
-
-Chart.register([LineController, CategoryScale, LinearScale, PointElement, LineElement])
 
 const LineChart = ({ className = '', data = {}, options = {}, onInit = () => {} }) => {
     const canvasRef = useRef(null)
     const chartRef = useRef(null)
 
-    const renderChart = useCallback(() => {
+    const renderChart = useCallback(async () => {
         if (!canvasRef.current) return
+
+        // Dynamically import Chart.js and only needed components
+        const ChartJS = await import('chart.js/auto')
+        const { Chart } = ChartJS
 
         chartRef.current = new Chart(canvasRef.current, {
             type: 'line',
@@ -48,7 +42,7 @@ const LineChart = ({ className = '', data = {}, options = {}, onInit = () => {} 
         setTimeout(() => {
             renderChart()
         }, 100)
-    }, [chartRef, data.labels, data.datasets, options, renderChart])
+    }, [data.labels, data.datasets, options, renderChart])
 
     useEffect(() => {
         renderChart()

@@ -62,7 +62,7 @@ const DashboardView = () => {
     }, [sleepTimer])
 
     return (
-        <div className="page mt-0">
+        <div className="page-container mt-0">
             <div className={classNames('container', styles.header)}>
                 <BabyProfile />
             </div>

@@ -1,6 +1,7 @@
-@import './styles/colors';
-@import './styles/spacing';
-@import './styles/flex';
+@use "@picocss/pico";
+@use 'styles/colors';
+@use 'styles/spacing';
+@use 'styles/flex';
 
 :root {
     color-scheme: only light;
@@ -9,8 +10,23 @@
 
 body {
     min-height: 100vh;
-    background-color: $light;
+    background-color: colors.$light;
 }
+
+.page-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+
+    @media (min-width: 600px) {
+        max-width: 600px;
+    }
+
+    @media (min-width: 1024px) {
+        max-width: 1024px;
+    }
+}
+
 
 #root {
     width: 100%;

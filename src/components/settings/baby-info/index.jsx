@@ -97,6 +97,19 @@ const BabyInfoForm = () => {
                     />
                 </div>
             )}
+
+            <div>
+                <label htmlFor="gender">Gender</label>
+                <select
+                    name="gender"
+                    aria-label="Select gender"
+                    {...register('gender', { required: 'Select an option' })}
+                >
+                    <option disabled>Select gender...</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
         </form>
     )
 }

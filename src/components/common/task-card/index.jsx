@@ -1,13 +1,11 @@
 import PropTypes from 'prop-types'
 import Card from '../card'
-import {
-    IconBabyBottle,
-    IconCalendar,
-    IconClock,
-    IconDiaper,
-    IconSubtask,
-    IconZzz
-} from '@tabler/icons-react'
+import IconBabyBottle from '@tabler/icons-react/dist/esm/icons/IconBabyBottle'
+import IconCalendar from '@tabler/icons-react/dist/esm/icons/IconCalendar'
+import IconClock from '@tabler/icons-react/dist/esm/icons/IconClock'
+import IconDiaper from '@tabler/icons-react/dist/esm/icons/IconDiaper'
+import IconSubtask from '@tabler/icons-react/dist/esm/icons/IconSubtask'
+import IconZzz from '@tabler/icons-react/dist/esm/icons/IconZzz'
 import { format, parseISO, intervalToDuration } from 'date-fns'
 import styles from './styles.module.scss'
 import classNames from 'classnames'

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import styles from './styles.module.scss'
-import { IconArrowLeft } from '@tabler/icons-react'
+import IconArrowLeft from '@tabler/icons-react/dist/esm/icons/IconArrowLeft'
 import { useLocation } from 'wouter'
 
 const PageLayout = ({ children, title = 'Baby Tracker', redirectToHome = false }) => {
@@ -23,7 +23,9 @@ const PageLayout = ({ children, title = 'Baby Tracker', redirectToHome = false }
                 </button>
                 <h1 className={styles.title}>{title}</h1>
             </header>
-            {children}
+            <div className="page-container pt-4">
+                {children}
+            </div>
         </article>
     )
 }
