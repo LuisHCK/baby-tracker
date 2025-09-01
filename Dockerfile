@@ -26,4 +26,4 @@ COPY --from=build /usr/src/app/public ./public
 
 # Serve static files
 EXPOSE 3000
-CMD ["bunx", "serve", "dist", "--host", "0.0.0.0"]
+CMD ["bunx", "serve", "dist"]
