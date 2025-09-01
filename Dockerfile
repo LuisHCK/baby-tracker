@@ -1,0 +1,27 @@
+# Base image
+FROM oven/bun:1-alpine AS base
+WORKDIR /usr/src/app
+
+# Install dependencies
+COPY package.json bun.lockb ./
+RUN bun install --frozen-lockfile
+
+# --- Development ---
+FROM base AS development
+COPY . .
+EXPOSE 5173
+CMD ["bun", "run", "dev", "--host"]
+
+# --- Build ---
+FROM base AS build
+COPY . .
+RUN bun run build
+
+# --- Production ---
+FROM oven/bun:1-alpine AS production
+WORKDIR /usr/src/app
+COPY --from=build /usr/src/app/dist ./dist
+
+# Serve static files
+EXPOSE 3000
+CMD ["bunx", "serve", "dist"]

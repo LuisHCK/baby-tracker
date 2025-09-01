@@ -28,7 +28,7 @@ const FeedForm = ({ onSubmit = () => {} }) => {
         const response = await addHistory({
             ...data,
             type: TASK_TYPES.FEEDING,
-            endedAt: parse(data.feedingTime, `yyyy-MM-dd'T'HH:mm`, new Date()).toISOString(),
+            endedAt: parse(data.endedAt, `yyyy-MM-dd'T'HH:mm`, new Date()).toISOString(),
             unit: units?.liquidUnit
         })
         if (response) {
@@ -62,15 +62,15 @@ const FeedForm = ({ onSubmit = () => {} }) => {
             <MilkInput onChange={({ unit }) => setValue('milk', unit)} />
 
             <div className={styles.formInput}>
-                <label htmlFor="feedingTime">Feeding time</label>
+                <label htmlFor="endedAt">Feeding time</label>
 
                 <input
                     type="datetime-local"
-                    id="feedingTime"
-                    name="feedingTime"
+                    id="endedAt"
+                    name="endedAt"
                     defaultValue={format(new Date(), `yyyy-MM-dd'T'HH:mm`)}
                     required
-                    {...register('feedingTime', { required: true })}
+                    {...register('endedAt', { required: true })}
                 />
             </div>
 

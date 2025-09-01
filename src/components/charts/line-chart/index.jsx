@@ -1,37 +1,64 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
-import { Chart } from 'chart.js'
+import {
+    Chart,
+    LineController,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement
+} from 'chart.js'
+
+Chart.register([LineController, CategoryScale, LinearScale, PointElement, LineElement])
 
 const LineChart = ({ className = '', data = {}, options = {}, onInit = () => {} }) => {
     const canvasRef = useRef(null)
-    const [chartInstance, setChartInstance] = useState(null)
+    const chartRef = useRef(null)
+
+    const renderChart = useCallback(() => {
+        if (!canvasRef.current) return
+
+        chartRef.current = new Chart(canvasRef.current, {
+            type: 'line',
+            data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                ...options
+            }
+        })
+
+        chartRef.current.update('logarithmic')
+
+        onInit?.(chartRef.current)
+    }, [canvasRef, data, options, onInit])
+
+    const destroyChart = () => {
+        if (chartRef.current) {
+            chartRef.current.destroy()
+            chartRef.current = null
+        }
+    }
 
     useEffect(() => {
-        if (!!data && !!canvasRef.current) {
-            const ctx = canvasRef.current.getContext('2d')
-            const chart = new Chart(ctx, {
-                type: 'line',
-                data,
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    ...options
-                }
-            })
+        if (!chartRef.current) return
 
-            setChartInstance(chart)
-        }
-    }, [data, canvasRef, options])
+        destroyChart()
+
+        setTimeout(() => {
+            renderChart()
+        }, 100)
+    }, [chartRef, data.labels, data.datasets, options, renderChart])
 
     useEffect(() => {
-        if (chartInstance) {
-            onInit?.(chartInstance)
-        }
-    }, [chartInstance, onInit])
+        renderChart()
+
+        return () => destroyChart()
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div className={className}>
-            <canvas ref={canvasRef} />
+            <canvas ref={canvasRef} id="lorem-ipsum" />
         </div>
     )
 }

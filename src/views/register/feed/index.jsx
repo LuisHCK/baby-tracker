@@ -7,6 +7,8 @@ import FeedForm from './form'
 import StickyBottomButton from '@/components/sticky-bottom-button'
 import TaskList from '@/components/task-list'
 import { TASK_TYPES } from '@/lib/constansts'
+import LineChart from '@/components/charts/line-chart'
+import { format, parseISO } from 'date-fns'
 
 const FeedView = () => {
     const [history, setHistory] = useState([])
@@ -22,8 +24,8 @@ const FeedView = () => {
         const res = await getHistoryByType(TASK_TYPES.FEEDING)
         setIsLoading(false)
 
-        if (res) {
-            setHistory(res)
+        if (Array.isArray(res)) {
+            setHistory(res.sort((a, b) => parseISO(b.endedAt) - parseISO(a.endedAt)))
         }
     }
 
@@ -32,12 +34,35 @@ const FeedView = () => {
         setFeedModalIsOpen(false)
     }
 
+    const parseTaskDate = (date = '') => {
+        try {
+            return format(parseISO(date), 'h:mbb')
+        } catch (error) {
+            console.log(`Error parsing date: ${error}`)
+        }
+    }
+
     useEffect(() => {
         getHistory()
     }, [])
 
     return (
         <Fragment>
+            <LineChart
+                data={{
+                    labels: history.reverse().map((item) => parseTaskDate(item.endedAt)),
+                    datasets: [
+                        {
+                            label: 'Feed',
+                            data: history.reverse().map((item) => item.milk),
+                            borderColor: '#fe6e63',
+                            backgroundColor: '#fe6e63',
+                            fill: false
+                        }
+                    ]
+                }}
+            />
+
             <div className={styles.feedLayout}>
                 <TaskList tasks={history} />
 
