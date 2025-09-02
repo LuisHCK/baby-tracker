@@ -15,6 +15,9 @@ CMD ["bun", "run", "dev", "--host"]
 # --- Build ---
 FROM base AS build
 COPY . .
+# Optional build-time variable(s) for Vite (only variables prefixed with VITE_ are exposed to client code)
+ARG VITE_CLERK_PUBLISHABLE_KEY
+ENV VITE_CLERK_PUBLISHABLE_KEY=${VITE_CLERK_PUBLISHABLE_KEY}
 RUN bun run build
 
 # --- Production ---
