@@ -17,20 +17,26 @@ export default defineConfig({
                 globPatterns: ['**/*.{js,css,html,svg,png,ico,webp,woff2}']
             },
             manifest: {
-                name: 'Baby Tracker',
+                name: 'BabyTracker',
                 short_name: 'BabyTracker',
-                start_url: '/',
-                display: 'standalone',
-                background_color: '#ffffff',
-                theme_color: '#ffffff',
                 icons: [
                     {
-                        src: '/vite.svg',
+                        src: '/web-app-manifest-192x192.png',
                         sizes: '192x192',
-                        type: 'image/svg+xml',
-                        purpose: 'any maskable'
+                        type: 'image/png',
+                        purpose: 'maskable'
+                    },
+                    {
+                        src: '/web-app-manifest-512x512.png',
+                        sizes: '512x512',
+                        type: 'image/png',
+                        purpose: 'maskable'
                     }
-                ]
+                ],
+                theme_color: '#A97C50',
+                background_color: '#D9E5D9',
+                display: 'standalone',
+                orientation: 'portrait'
             }
         })
     ],
