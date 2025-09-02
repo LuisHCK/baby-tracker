@@ -18,12 +18,16 @@ COPY . .
 RUN bun run build
 
 # --- Production ---
-FROM oven/bun:alpine AS production
-WORKDIR /usr/src/app
-# Only copy the built files and public assets
-COPY --from=build /usr/src/app/dist ./dist
-COPY --from=build /usr/src/app/public ./public
+FROM nginx:1.27-alpine AS production
 
-# Serve static files
-EXPOSE 5173
-CMD ["bunx", "serve", "dist", "--host", "0.0.0.0"]
+# Copy built files to Nginx web root
+COPY --from=build /usr/src/app/dist /usr/share/nginx/html
+
+# Copy Nginx configuration for SPA routing and caching
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+
+# Expose HTTP
+EXPOSE 80
+
+# Use the default nginx start command
+CMD ["nginx", "-g", "daemon off;"]
