@@ -27,3 +27,12 @@ createRoot(document.getElementById('root')).render(
         </ClerkProvider>
     </StrictMode>
 )
+
+// Register service worker for PWA (only in production build)
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker
+            .register('/sw.js')
+            .catch((err) => console.warn('SW registration failed', err))
+    })
+}
