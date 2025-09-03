@@ -1,15 +1,8 @@
-import { SignIn, useAuth, UserProfile } from '@clerk/clerk-react'
-
 const ProfilePage = () => {
-    const { userId } = useAuth()
-
+    const userId = null // TODO: Replace with actual user ID logic
     return (
         <div className="page w-100 d-flex flex-center pt-4">
-            {userId ? (
-                <UserProfile path="/app/profile" />
-            ) : (
-                <SignIn path="/app/profile" fallbackRedirectUrl="/app/profile" />
-            )}
+            {userId ? <div>Logged in</div> : <div>Sign in</div>}
         </div>
     )
 }

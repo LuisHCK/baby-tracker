@@ -1,4 +1,3 @@
-import { SignIn } from '@clerk/clerk-react'
 import styles from './styles.module.scss'
 import { createAnonymousUser } from '@/controllers/users'
 import { useLocation } from 'wouter'
@@ -16,8 +15,6 @@ const LoginPage = () => {
 
     return (
         <div className={styles.container}>
-            <SignIn path="~/login" fallbackRedirectUrl="/app" />
-
             <div className={styles.footer}>
                 <p>
                     <button onClick={handleAnonymousLogin}>Proceed without an account</button>
