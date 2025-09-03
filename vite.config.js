@@ -20,6 +20,12 @@ export default defineConfig({
                 name: 'BabyTracker',
                 short_name: 'BabyTracker',
                 description: 'A simple app to track your baby activities',
+                theme_color: '#fe6e63',
+                background_color: '#fea36c',
+                display: 'standalone',
+                scope: '/',
+                start_url: '/',
+                orientation: 'portrait',
                 icons: [
                     {
                         src: '/favicon-96x96.png',
@@ -57,13 +63,7 @@ export default defineConfig({
                         type: 'image/png',
                         purpose: 'any'
                     }
-                ],
-                theme_color: '#A97C50',
-                background_color: '#D9E5D9',
-                display: 'standalone',
-                scope: '/',
-                start_url: '/',
-                orientation: 'portrait'
+                ]
             }
         })
     ],
