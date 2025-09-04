@@ -4,24 +4,26 @@ import DiaperView from '@/views/register/diaper'
 import FeedView from '@/views/register/feed'
 import SleepingView from '@/views/register/sleeping'
 import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useLocation } from 'wouter'
 
 const RegisterPage = () => {
     const [location] = useLocation()
+    const { t } = useTranslation()
 
     const currentView = useMemo(() => {
         switch (location) {
             case '/register/feed':
-                return { title: 'Feeding', view: <FeedView /> }
+                return { title: t('register.feeding'), view: <FeedView /> }
             case '/register/diaper':
-                return { title: 'Diaper', view: <DiaperView /> }
+                return { title: t('register.diaper'), view: <DiaperView /> }
             case '/register/sleeping':
-                return { title: 'Sleeping', view: <SleepingView /> }
+                return { title: t('register.sleeping'), view: <SleepingView /> }
 
             default:
-                return { title: 'Register', view: <div>Register Page</div> }
+                return { title: t('register.register'), view: <div>Register Page</div> }
         }
-    }, [location])
+    }, [location, t])
 
     return (
         <AuthRequired>

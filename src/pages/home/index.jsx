@@ -1,6 +1,8 @@
 import './home.css'
+import { useTranslation } from 'react-i18next'
 
 const HomePage = () => {
+    const { t } = useTranslation()
     return (
         <main className="d-flex flex-center flex-column">
             {/* Navigation */}
@@ -25,17 +27,17 @@ const HomePage = () => {
                             </div>
                             <div className="logo-text">
                                 <span className="logo-title">Baby Tracker</span>
-                                <span className="badge badge-secondary">Open Source</span>
+                                <span className="badge badge-secondary">{t('home.openSource')}</span>
                             </div>
                         </div>
 
                         {/* Desktop Navigation */}
                         <div className="nav-links">
                             <a href="#features" className="nav-link">
-                                Features
+                                {t('home.features')}
                             </a>
                             <a href="#benefits" className="nav-link">
-                                Benefits
+                                {t('home.benefits')}
                             </a>
                             <a href="https://github.com/LuisHCK/baby-tracker" className="nav-link">
                                 GitHub
@@ -48,9 +50,9 @@ const HomePage = () => {
                                 <svg className="icon-sm" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                                 </svg>
-                                Star
+                                {t('home.star')}
                             </button>
-                            <a href='/app' className="btn btn-primary btn-sm">Try it!</a>
+                            <a href='/app' className="btn btn-primary btn-sm">{t('home.tryIt')}</a>
 
                             {/* Mobile Menu Button */}
                             <button
@@ -76,10 +78,10 @@ const HomePage = () => {
                     <div className="mobile-menu" id="mobileMenu">
                         <div className="mobile-menu-content">
                             <a href="#features" className="mobile-menu-link">
-                                Features
+                                {t('home.features')}
                             </a>
                             <a href="#benefits" className="mobile-menu-link">
-                                Benefits
+                                {t('home.benefits')}
                             </a>
                             <a
                                 href="https://github.com/LuisHCK/baby-tracker"
@@ -102,23 +104,21 @@ const HomePage = () => {
                                 <svg className="icon-sm" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                                 </svg>
-                                Open Source & Self-Hosted
+                                {t('home.hero.openSourceSelfHosted')}
                             </div>
 
                             <h1 className="hero-title">
-                                Track Your Baby's
-                                <span className="gradient-text"> Journey</span>
+                                {t('home.hero.title.trackYourBabys')}
+                                <span className="gradient-text"> {t('home.hero.title.journey')}</span>
                             </h1>
 
                             <p className="hero-description">
-                                The ultimate app designed to help you monitor and manage your little
-                                one's daily activities with ease. Perfect for new parents who want
-                                to stay organized and informed.
+                                {t('home.hero.description')}
                             </p>
 
                             <div className="hero-buttons">
-                                <button className="btn btn-primary btn-lg">Get Started</button>
-                                <button className="btn btn-outline btn-lg">View Features</button>
+                                <button className="btn btn-primary btn-lg">{t('home.hero.getStarted')}</button>
+                                <button className="btn btn-outline btn-lg">{t('home.hero.viewFeatures')}</button>
                             </div>
 
                             <div className="hero-features">
@@ -132,7 +132,7 @@ const HomePage = () => {
                                     >
                                         <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
                                     </svg>
-                                    Privacy First
+                                    {t('home.hero.privacyFirst')}
                                 </div>
                                 <div className="hero-feature">
                                     <svg
@@ -144,7 +144,7 @@ const HomePage = () => {
                                     >
                                         <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5Z" />
                                     </svg>
-                                    Made with Love
+                                    {t('home.hero.madeWithLove')}
                                 </div>
                             </div>
                         </div>
@@ -170,8 +170,8 @@ const HomePage = () => {
                             {/* Modern Stats Dashboard */}
                             <div className="stats-dashboard">
                                 <div className="dashboard-header">
-                                    <div className="dashboard-title">Today's Summary</div>
-                                    <div className="dashboard-date">Dec 4, 2025</div>
+                                    <div className="dashboard-title">{t('home.hero.dashboard.todaysSummary')}</div>
+                                    <div className="dashboard-date">{t('home.hero.dashboard.date')}</div>
                                 </div>
 
                                 <div className="stats-grid">
@@ -189,7 +189,7 @@ const HomePage = () => {
                                         </div>
                                         <div className="stat-content">
                                             <div className="stat-value">8</div>
-                                            <div className="stat-unit">feeds</div>
+                                            <div className="stat-unit">{t('home.hero.dashboard.feeds')}</div>
                                         </div>
                                     </div>
 
@@ -207,17 +207,17 @@ const HomePage = () => {
                                         </div>
                                         <div className="stat-content">
                                             <div className="stat-value">14h</div>
-                                            <div className="stat-unit">sleep</div>
+                                            <div className="stat-unit">{t('home.hero.dashboard.sleep')}</div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="progress-indicator">
-                                    <div className="progress-label">Daily Goals</div>
+                                    <div className="progress-label">{t('home.hero.dashboard.dailyGoals')}</div>
                                     <div className="progress-bar">
                                         <div className="progress-fill"></div>
                                     </div>
-                                    <div className="progress-text">85% Complete</div>
+                                    <div className="progress-text">{t('home.hero.dashboard.progressComplete')}</div>
                                 </div>
                             </div>
 
@@ -225,15 +225,15 @@ const HomePage = () => {
                             <div className="feature-pills">
                                 <div className="feature-pill">
                                     <span className="pill-icon">🍼</span>
-                                    Smart Reminders
+                                    {t('home.hero.pills.smartReminders')}
                                 </div>
                                 <div className="feature-pill">
                                     <span className="pill-icon">📊</span>
-                                    Growth Charts
+                                    {t('home.hero.pills.growthCharts')}
                                 </div>
                                 <div className="feature-pill">
                                     <span className="pill-icon">🔒</span>
-                                    Privacy First
+                                    {t('home.hero.pills.privacyFirst')}
                                 </div>
                             </div>
                         </div>
@@ -246,12 +246,11 @@ const HomePage = () => {
                 <div className="container">
                     <div className="section-header">
                         <h2 className="section-title">
-                            Everything You Need to
-                            <span className="gradient-text"> Track & Care</span>
+                            {t('home.featuresSection.title.everythingYouNeed')}
+                            <span className="gradient-text"> {t('home.featuresSection.title.trackAndCare')}</span>
                         </h2>
                         <p className="section-description">
-                            Comprehensive tools designed specifically for new parents to monitor,
-                            understand, and care for their little ones.
+                            {t('home.featuresSection.description')}
                         </p>
                     </div>
 
@@ -270,10 +269,9 @@ const HomePage = () => {
                                     <path d="M18 12h2" />
                                 </svg>
                             </div>
-                            <h3 className="feature-title">Feeding Tracking</h3>
+                            <h3 className="feature-title">{t('home.featuresSection.cards.feedingTracking.title')}</h3>
                             <p className="feature-description">
-                                Log and monitor your baby's feeding times and quantities with ease.
-                                Track both breastfeeding and bottle feeding sessions.
+                                {t('home.featuresSection.cards.feedingTracking.description')}
                             </p>
                         </div>
 
@@ -289,10 +287,9 @@ const HomePage = () => {
                                     <polyline points="12,6 12,12 16,14" />
                                 </svg>
                             </div>
-                            <h3 className="feature-title">Diaper Tracking</h3>
+                            <h3 className="feature-title">{t('home.featuresSection.cards.diaperTracking.title')}</h3>
                             <p className="feature-description">
-                                Keep track of diaper changes to ensure your baby's comfort and
-                                health. Monitor patterns and stay on top of hygiene.
+                                {t('home.featuresSection.cards.diaperTracking.description')}
                             </p>
                         </div>
 
@@ -308,10 +305,9 @@ const HomePage = () => {
                                     <path d="m19 9-5 5-4-4-3 3" />
                                 </svg>
                             </div>
-                            <h3 className="feature-title">Sleep Tracking</h3>
+                            <h3 className="feature-title">{t('home.featuresSection.cards.sleepTracking.title')}</h3>
                             <p className="feature-description">
-                                Record sleep patterns to understand your baby's sleep routines.
-                                Identify trends and optimize sleep schedules.
+                                {t('home.featuresSection.cards.sleepTracking.description')}
                             </p>
                         </div>
 
@@ -326,10 +322,9 @@ const HomePage = () => {
                                     <polyline points="22,12 18,12 15,21 9,3 6,12 2,12" />
                                 </svg>
                             </div>
-                            <h3 className="feature-title">Growth Monitoring</h3>
+                            <h3 className="feature-title">{t('home.featuresSection.cards.growthMonitoring.title')}</h3>
                             <p className="feature-description">
-                                Track your baby's growth over time with detailed charts and stats.
-                                Monitor weight, height, and development milestones.
+                                {t('home.featuresSection.cards.growthMonitoring.description')}
                             </p>
                         </div>
 
@@ -347,10 +342,9 @@ const HomePage = () => {
                                     <path d="m3 5v14c0 .55.45 1 1 1h16c.55 0 1-.45 1-1V5" />
                                 </svg>
                             </div>
-                            <h3 className="feature-title">Historical Data</h3>
+                            <h3 className="feature-title">{t('home.featuresSection.cards.historicalData.title')}</h3>
                             <p className="feature-description">
-                                Access and review historical data to spot trends and patterns in
-                                your baby's development and daily routines.
+                                {t('home.featuresSection.cards.historicalData.description')}
                             </p>
                         </div>
 
@@ -365,10 +359,9 @@ const HomePage = () => {
                                     <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
                                 </svg>
                             </div>
-                            <h3 className="feature-title">Privacy & Security</h3>
+                            <h3 className="feature-title">{t('home.featuresSection.cards.privacyAndSecurity.title')}</h3>
                             <p className="feature-description">
-                                Self-hosted solution means your data stays with you. Complete
-                                control over your baby's sensitive information.
+                                {t('home.featuresSection.cards.privacyAndSecurity.description')}
                             </p>
                         </div>
                     </div>
@@ -383,17 +376,16 @@ const HomePage = () => {
                             <svg className="icon-sm" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                             </svg>
-                            Open Source & Self-Hosted
+                            {t('home.openSourceSection.badge')}
                         </div>
 
                         <h2 className="section-title">
-                            Built for Privacy &<span className="gradient-text"> Freedom</span>
+                            {t('home.openSourceSection.title.builtForPrivacy')}
+                            <span className="gradient-text"> {t('home.openSourceSection.title.freedom')}</span>
                         </h2>
 
                         <p className="section-description">
-                            Take control of your family's data with our open-source, self-hosted
-                            solution. No vendor lock-in, no privacy concerns, just pure parenting
-                            support.
+                            {t('home.openSourceSection.description')}
                         </p>
                     </div>
 
@@ -413,10 +405,9 @@ const HomePage = () => {
                                 </svg>
                             </div>
                             <div className="benefit-content">
-                                <h3 className="benefit-title">Complete Control</h3>
+                                <h3 className="benefit-title">{t('home.openSourceSection.benefits.completeControl.title')}</h3>
                                 <p className="benefit-description">
-                                    Your data stays on your own server. No third-party access to
-                                    your baby's sensitive information.
+                                    {t('home.openSourceSection.benefits.completeControl.description')}
                                 </p>
                             </div>
                         </div>
@@ -435,10 +426,9 @@ const HomePage = () => {
                                 </svg>
                             </div>
                             <div className="benefit-content">
-                                <h3 className="benefit-title">No Monthly Fees</h3>
+                                <h3 className="benefit-title">{t('home.openSourceSection.benefits.noMonthlyFees.title')}</h3>
                                 <p className="benefit-description">
-                                    One-time setup with no recurring subscription costs. Perfect for
-                                    budget-conscious families.
+                                    {t('home.openSourceSection.benefits.noMonthlyFees.description')}
                                 </p>
                             </div>
                         </div>
@@ -457,10 +447,9 @@ const HomePage = () => {
                                 </svg>
                             </div>
                             <div className="benefit-content">
-                                <h3 className="benefit-title">Community Driven</h3>
+                                <h3 className="benefit-title">{t('home.openSourceSection.benefits.communityDriven.title')}</h3>
                                 <p className="benefit-description">
-                                    Built by parents, for parents. Join a community that understands
-                                    your needs and challenges.
+                                    {t('home.openSourceSection.benefits.communityDriven.description')}
                                 </p>
                             </div>
                         </div>
@@ -478,10 +467,9 @@ const HomePage = () => {
                                 </svg>
                             </div>
                             <div className="benefit-content">
-                                <h3 className="benefit-title">Customizable</h3>
+                                <h3 className="benefit-title">{t('home.openSourceSection.benefits.customizable.title')}</h3>
                                 <p className="benefit-description">
-                                    Open source means you can modify and extend the app to fit your
-                                    unique parenting style.
+                                    {t('home.openSourceSection.benefits.customizable.description')}
                                 </p>
                             </div>
                         </div>
@@ -491,10 +479,9 @@ const HomePage = () => {
                     <div className="cta-container">
                         <div className="cta-card">
                             <div className="cta-content">
-                                <h3 className="cta-title">Ready to Get Started?</h3>
+                                <h3 className="cta-title">{t('home.cta.title')}</h3>
                                 <p className="cta-description">
-                                    Download Baby Tracker today and start your journey to organized,
-                                    stress-free parenting.
+                                    {t('home.cta.description')}
                                 </p>
 
                                 <div className="cta-buttons">
@@ -509,7 +496,7 @@ const HomePage = () => {
                                         >
                                             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                                         </svg>
-                                        View on GitHub
+                                        {t('home.cta.viewOnGitHub')}
                                     </a>
                                     <a href='/app' className="btn btn-outline btn-lg">
                                         <svg
@@ -523,7 +510,7 @@ const HomePage = () => {
                                             <polyline points="7,10 12,15 17,10" />
                                             <line x1="12" x2="12" y1="15" y2="3" />
                                         </svg>
-                                        Try it now!
+                                        {t('home.cta.tryItNow')}
                                     </a>
                                 </div>
 
@@ -537,7 +524,7 @@ const HomePage = () => {
                                     >
                                         <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5Z" />
                                     </svg>
-                                    Free forever • No registration required
+                                    {t('home.cta.footer')}
                                 </div>
                             </div>
                         </div>
@@ -551,21 +538,21 @@ const HomePage = () => {
                     <div className="footer-content">
                         <h3 className="footer-title">Baby Tracker</h3>
                         <p className="footer-description">
-                            Open source baby tracking made with ❤️ for parents everywhere
+                            {t('home.footer.description')}
                         </p>
                         <div className="footer-links">
                             <a href="https://github.com/LuisHCK/baby-tracker" className="footer-link">
                                 GitHub
                             </a>
                             <a href="#" className="footer-link">
-                                Documentation
+                                {t('home.footer.documentation')}
                             </a>
                             <a href="#" className="footer-link">
-                                Community
+                                {t('home.footer.community')}
                             </a>
                         </div>
                         <p className="footer-copyright">
-                            © 2024 Baby Tracker. Open source under MIT License.
+                            {t('home.footer.copyright')}
                         </p>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 
 const Dialog = ({
     isOpen = false,
@@ -7,9 +8,10 @@ const Dialog = ({
     onDismiss = () => {},
     title = '',
     description = '',
-    confirmText = 'Ok',
-    cancelText = 'Cancel'
+    confirmText,
+    cancelText
 }) => {
+    const { t } = useTranslation()
     const handleDismiss = () => {
         onDismiss?.()
         onClose?.()
@@ -27,9 +29,9 @@ const Dialog = ({
                 <p>{description}</p>
                 <footer>
                     <button className="secondary" onClick={handleDismiss}>
-                        {cancelText}
+                        {cancelText || t('common.cancel')}
                     </button>
-                    <button onClick={handleConfirm}>{confirmText}</button>
+                    <button onClick={handleConfirm}>{confirmText || t('common.ok')}</button>
                 </footer>
             </article>
         </dialog>

@@ -1,0 +1,198 @@
+{
+    "login": {
+        "proceedWithoutAccount": "Continuar sin una cuenta"
+    },
+    "growthRecords": {
+        "title": "Registros de Crecimiento"
+    },
+    "register": {
+        "feeding": "Alimentación",
+        "diaper": "Pañal",
+        "sleeping": "Durmiendo",
+        "register": "Registro"
+    },
+    "settings": {
+        "title": "Configuración",
+        "babyInfo": "Información del bebé",
+        "appSettings": "Configuración de la aplicación"
+    },
+    "common": {
+        "close": "Cerrar",
+        "ok": "Aceptar",
+        "cancel": "Cancelar",
+        "confirm": "Confirmar"
+    },
+    "history": {
+        "title": "Historial"
+    },
+    "profile": {
+        "loggedIn": "Sesión iniciada",
+        "signIn": "Iniciar sesión"
+    },
+    "home": {
+        "openSource": "Código Abierto",
+        "features": "Características",
+        "benefits": "Beneficios",
+        "star": "Estrella en GitHub",
+        "tryIt": "Pruébalo ahora",
+        "hero": {
+            "openSourceSelfHosted": "Código Abierto y Auto-Alojado",
+            "title": {
+                "trackYourBabys": "Sigue el",
+                "journey": "Viaje de tu Bebé"
+            },
+            "description": "Un rastreador de bebés moderno, centrado en la privacidad y de código abierto que te ayuda a monitorear el crecimiento y las actividades diarias de tu pequeño. Auto-alójalo para un control total de los datos.",
+            "getStarted": "Comenzar",
+            "viewFeatures": "Ver Características",
+            "privacyFirst": "Privacidad Primero",
+            "madeWithLove": "Hecho con ❤️ para nuevos padres",
+            "dashboard": {
+                "todaysSummary": "Resumen de Hoy",
+                "date": "26 de oct",
+                "feeds": "Tomas",
+                "sleep": "Sueño",
+                "dailyGoals": "Metas Diarias",
+                "progressComplete": "75% completado"
+            },
+            "pills": {
+                "smartReminders": "Recordatorios Inteligentes",
+                "growthCharts": "Gráficos de Crecimiento",
+                "privacyFirst": "Privacidad Primero"
+            }
+        },
+        "featuresSection": {
+            "title": {
+                "everythingYouNeed": "Todo lo que Necesitas para",
+                "trackAndCare": "Seguir y Cuidar"
+            },
+            "description": "Baby Tracker está diseñado con todas las características esenciales para hacer la crianza un poco más fácil. Desde horarios de alimentación hasta hitos de crecimiento, te tenemos cubierto.",
+            "cards": {
+                "feedingTracking": {
+                    "title": "Seguimiento de Alimentación",
+                    "description": "Registra la lactancia, la alimentación con biberón y la ingesta de alimentos sólidos con facilidad. Rastrea la duración, la cantidad y el tipo para asegurar que tu bebé reciba la nutrición adecuada."
+                },
+                "diaperTracking": {
+                    "title": "Cambios de Pañal",
+                    "description": "Mantén un registro de los pañales mojados y sucios. Monitorea los patrones para asegurar que tu bebé esté sano e hidratado."
+                },
+                "sleepTracking": {
+                    "title": "Patrones de Sueño",
+                    "description": "Rastrea las sesiones de sueño para entender los hábitos de sueño de tu bebé. Registra las siestas y el sueño nocturno para establecer una rutina saludable."
+                },
+                "growthMonitoring": {
+                    "title": "Monitoreo de Crecimiento",
+                    "description": "Registra el peso, la altura y la circunferencia de la cabeza. Visualiza el crecimiento de tu bebé con gráficos interactivos y compáralo con los percentiles de la OMS."
+                },
+                "historicalData": {
+                    "title": "Datos Históricos",
+                    "description": "Accede a un historial completo de todas las actividades rastreadas. Filtra y exporta datos para compartirlos con pediatras o para tus registros personales."
+                },
+                "privacyAndSecurity": {
+                    "title": "Privacidad y Seguridad",
+                    "description": "Con el auto-alojamiento, tus datos permanecen en tu servidor. Sin acceso de terceros, sin minería de datos. Solo tú y los datos de tu bebé."
+                }
+            }
+        },
+        "openSourceSection": {
+            "badge": "100% Código Abierto",
+            "title": {
+                "builtForPrivacy": "Construido para la Privacidad y la",
+                "freedom": "Libertad"
+            },
+            "description": "Baby Tracker es de código abierto, dándote la libertad de poseer, gestionar y asegurar tus datos. Sin suscripciones, sin tarifas ocultas, solo una herramienta construida para ti.",
+            "benefits": {
+                "completeControl": {
+                    "title": "Control Completo",
+                    "description": "Aloja la aplicación en tu propio servidor o en cualquier proveedor de la nube. Tienes control total sobre tus datos y la aplicación."
+                },
+                "noMonthlyFees": {
+                    "title": "Sin Tarifas Mensuales",
+                    "description": "Di adiós a las suscripciones recurrentes. Descarga, instala y usa Baby Tracker gratis, para siempre."
+                },
+                "communityDriven": {
+                    "title": "Impulsado por la Comunidad",
+                    "description": "Contribuye al proyecto, sugiere nuevas características y sé parte de una comunidad dedicada a mejorar la herramienta para todos."
+                },
+                "customizable": {
+                    "title": "Personalizable y Extensible",
+                    "description": "Adapta la aplicación a tus necesidades. La naturaleza de código abierto te permite modificar y extender la funcionalidad como mejor te parezca."
+                }
+            }
+        },
+        "cta": {
+            "title": "¿Listo para Empezar tu Viaje?",
+            "description": "Toma el control de los datos de tu bebé y comienza a rastrear sus hitos hoy. Es gratis, seguro y todo tuyo.",
+            "viewOnGitHub": "Ver en GitHub",
+            "tryItNow": "Pruébalo Ahora",
+            "footer": "Únete a cientos de padres que confían en Baby Tracker"
+        },
+        "footer": {
+            "description": "Un rastreador de bebés moderno, centrado en la privacidad y de código abierto.",
+            "documentation": "Documentación",
+            "community": "Comunidad",
+            "copyright": "© 2024 Baby Tracker. Todos los derechos reservados."
+        }
+    },
+    "dashboard": {
+        "history": "Historial",
+        "viewFullHistory": "Ver historial completo",
+        "noHistory": "No se encontró historial",
+        "inProgress": "En progreso"
+    },
+    "task": {
+        "diaper": "Pañal",
+        "sleeping": "Durmiendo",
+        "feeding": "Alimentación"
+    },
+    "actions": {
+        "sleeping": "Durmiendo",
+        "feeding": "Alimentación",
+        "diaper": "Pañal"
+    },
+    "baby_profile": {
+        "photo_alt": "Foto de {{name}}",
+        "weight": "Peso",
+        "age": "Edad",
+        "height": "Altura"
+    },
+    "in_progress": {
+        "stop_timer_title": "¿Detener el temporizador de sueño?",
+        "stop_timer_description": "¿Quieres registrar el tiempo de sueño?",
+        "dont_save": "No guardar",
+        "save": "Guardar",
+        "sleep": "Dormir"
+    },
+    "navigation": {
+        "home": "Inicio",
+        "history": "Historial",
+        "profile": "Perfil",
+        "settings": "Ajustes"
+    },
+    "no_results": {
+        "alt": "No hay resultados",
+        "label": "No se encontraron resultados"
+    },
+    "app_settings_form": {
+        "liquid_unit": "Unidad de líquido",
+        "select_liquid_unit": "Seleccionar unidad de líquido",
+        "select_unit": "Seleccionar una unidad...",
+        "length_unit": "Unidad de longitud",
+        "select_length_unit": "Seleccionar unidad de longitud",
+        "weight_unit": "Unidad de peso",
+        "select_weight_unit": "Seleccionar unidad de peso"
+    },
+    "baby_info_form": {
+        "save_success_message": "Información del bebé guardada con éxito",
+        "photo_save_success_message": "Foto guardada con éxito",
+        "name": "Nombre",
+        "weight": "Peso ({{unit}})",
+        "height": "Altura ({{unit}})",
+        "birthday": "Cumpleaños",
+        "photo": "Foto"
+    },
+    "layouts": {
+        "page_layout": {
+            "title": "Baby Tracker"
+        }
+    }
+}

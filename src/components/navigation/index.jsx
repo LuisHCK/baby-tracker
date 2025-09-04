@@ -6,34 +6,36 @@ import styles from './styles.module.scss'
 import { Link, useLocation } from 'wouter'
 import classNames from 'classnames'
 import { matchPath } from '@/utils/regex'
-
-const buttons = [
-    {
-        icon: IconHome,
-        label: 'Home',
-        path: '/'
-    },
-    {
-        icon: IconHistory,
-        label: 'History',
-        path: '/history'
-    },
-    {
-        icon: IconUserCircle,
-        label: 'Profile',
-        path: '/profile'
-    },
-    {
-        icon: IconSettings,
-        label: 'Settings',
-        path: '/settings'
-    }
-]
+import { useTranslation } from 'react-i18next'
 
 const pagesHidden = ['/register', '/settings']
 
 const Navigation = () => {
     const [location] = useLocation()
+    const { t } = useTranslation()
+
+    const buttons = [
+        {
+            icon: IconHome,
+            label: t('navigation.home'),
+            path: '/'
+        },
+        {
+            icon: IconHistory,
+            label: t('navigation.history'),
+            path: '/history'
+        },
+        {
+            icon: IconUserCircle,
+            label: t('navigation.profile'),
+            path: '/profile'
+        },
+        {
+            icon: IconSettings,
+            label: t('navigation.settings'),
+            path: '/settings'
+        }
+    ]
 
     if (pagesHidden.some((page) => matchPath(location, page))) {
         return null

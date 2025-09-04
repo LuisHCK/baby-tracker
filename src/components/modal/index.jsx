@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const Modal = ({
     children,
@@ -8,9 +9,10 @@ const Modal = ({
     isOpen = false,
     hideConfirm = false,
     title = '',
-    cancelLabel = 'Cancel',
-    confirmLabel = 'Confirm'
+    cancelLabel,
+    confirmLabel
 }) => {
+    const { t } = useTranslation()
     const handleClose = () => {
         if (typeof onClose === 'function') {
             onClose()
@@ -33,7 +35,7 @@ const Modal = ({
         <dialog open={isOpen}>
             <article>
                 <header>
-                    <button onClick={handleClose} aria-label="Close" rel="prev"></button>
+                    <button onClick={handleClose} aria-label={t('common.close')} rel="prev"></button>
                     <p>
                         <strong>{title}</strong>
                     </p>
@@ -41,9 +43,9 @@ const Modal = ({
                 {children}
                 <footer>
                     <button onClick={handleClose} className="secondary">
-                        {cancelLabel}
+                        {cancelLabel || t('common.cancel')}
                     </button>
-                    {!hideConfirm && <button onClick={onConfirm}>{confirmLabel}</button>}
+                    {!hideConfirm && <button onClick={onConfirm}>{confirmLabel || t('common.confirm')}</button>}
                 </footer>
             </article>
         </dialog>

@@ -5,6 +5,7 @@ import { Toaster } from 'react-hot-toast'
 import { DialogProvider } from './context/dialog-provider.jsx'
 import App from './App.jsx'
 import './index.scss'
+import './i18n';
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 

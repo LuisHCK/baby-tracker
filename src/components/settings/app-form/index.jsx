@@ -3,6 +3,7 @@ import { saveSettings } from '@/controllers/settings'
 import { isEmpty } from '@/utils/tools'
 import { useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 
 let SAVE_TIMEOUT = null
 
@@ -10,6 +11,7 @@ const AppSettingsForm = () => {
     const { register, handleSubmit, watch, setValue } = useForm()
     const { units, setUnits } = useContext(AppContext)
     const [isLoaded, setIsLoaded] = useState(false)
+    const { t } = useTranslation()
 
     const saveData = async (data) => {
         const res = await saveSettings('units', data)
@@ -41,13 +43,13 @@ const AppSettingsForm = () => {
     return (
         <form onSubmit={handleSubmit()}>
             <div>
-                <label htmlFor="liquidUnit">Liquid unit</label>
+                <label htmlFor="liquidUnit">{t('app_settings_form.liquid_unit')}</label>
                 <select
                     name="liquidUnit"
-                    aria-label="Select liquid unit"
+                    aria-label={t('app_settings_form.select_liquid_unit')}
                     {...register('liquidUnit', { required: 'Select an option' })}
                 >
-                    <option disabled>Select an unit...</option>
+                    <option disabled>{t('app_settings_form.select_unit')}</option>
                     <option value="ml">ml</option>
                     <option value="uk fl-oz">uk fl-oz</option>
                     <option value="us fl-oz">us fl-oz</option>
@@ -55,26 +57,26 @@ const AppSettingsForm = () => {
             </div>
 
             <div>
-                <label htmlFor="lengthUnit">Length unit</label>
+                <label htmlFor="lengthUnit">{t('app_settings_form.length_unit')}</label>
                 <select
                     name="lengthUnit"
-                    aria-label="Select length unit"
+                    aria-label={t('app_settings_form.select_length_unit')}
                     {...register('lengthUnit', { required: 'Select an option' })}
                 >
-                    <option disabled>Select an unit...</option>
+                    <option disabled>{t('app_settings_form.select_unit')}</option>
                     <option value="in">in</option>
                     <option value="cm">cm</option>
                 </select>
             </div>
 
             <div>
-                <label htmlFor="weightUnit">Weight unit</label>
+                <label htmlFor="weightUnit">{t('app_settings_form.weight_unit')}</label>
                 <select
                     name="weightUnit"
-                    aria-label="Select weight unit"
+                    aria-label={t('app_settings_form.select_weight_unit')}
                     {...register('weightUnit', { required: 'Select an option' })}
                 >
-                    <option disabled>Select an unit...</option>
+                    <option disabled>{t('app_settings_form.select_unit')}</option>
                     <option value="lb">lb</option>
                     <option value="kg">kg</option>
                 </select>

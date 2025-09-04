@@ -4,29 +4,31 @@ import IconZzz from '@tabler/icons-react/dist/esm/icons/IconZzz'
 import styles from './styles.module.scss'
 import classNames from 'classnames'
 import { Link } from 'wouter'
-
-const buttons = [
-    {
-        label: 'Sleeping',
-        icon: IconZzz,
-        className: 'variantRed',
-        path: '/register/sleeping'
-    },
-    {
-        label: 'Feeding',
-        icon: IconBabyBottle,
-        className: 'variantOrange',
-        path: '/register/feed'
-    },
-    {
-        label: 'Diaper',
-        icon: IconDiaper,
-        className: 'variantPurple',
-        path: '/register/diaper'
-    }
-]
+import { useTranslation } from 'react-i18next'
 
 const Actions = () => {
+    const { t } = useTranslation()
+    const buttons = [
+        {
+            label: t('actions.sleeping'),
+            icon: IconZzz,
+            className: 'variantRed',
+            path: '/register/sleeping'
+        },
+        {
+            label: t('actions.feeding'),
+            icon: IconBabyBottle,
+            className: 'variantOrange',
+            path: '/register/feed'
+        },
+        {
+            label: t('actions.diaper'),
+            icon: IconDiaper,
+            className: 'variantPurple',
+            path: '/register/diaper'
+        }
+    ]
+
     return (
         <div className={styles.container}>
             {buttons.map((button) => (

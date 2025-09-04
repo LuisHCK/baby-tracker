@@ -5,18 +5,20 @@ import { useContext, useEffect } from 'react'
 import { AppContext } from '@/context/app'
 import { resizeImage } from '@/utils/images'
 import styles from './styles.module.scss'
+import { useTranslation } from 'react-i18next'
 
 let SAVE_TIMEOUT = null
 
 const BabyInfoForm = () => {
     const { register, handleSubmit, watch } = useForm()
     const { babyInfo, setBabyInfo, photo, setPhoto, units } = useContext(AppContext)
+    const { t } = useTranslation()
 
     const saveData = async (data) => {
         const res = await saveSettings('babyInfo', data)
         if (res) {
             setBabyInfo(res.value)
-            toast.success('Baby info saved successfully')
+            toast.success(t('baby_info_form.save_success_message'))
         }
     }
 
@@ -24,7 +26,7 @@ const BabyInfoForm = () => {
         if (babyInfo) {
             window.localStorage.setItem('photo', encodedImage)
             setPhoto(encodedImage)
-            toast.success('Photo saved successfully')
+            toast.success(t('baby_info_form.photo_save_success_message'))
         }
     }
 
@@ -42,7 +44,7 @@ const BabyInfoForm = () => {
     return (
         <form onSubmit={handleSubmit(saveData)}>
             <div className={styles.formControl}>
-                <label htmlFor="name">Name</label>
+                <label htmlFor="name">{t('baby_info_form.name')}</label>
                 <input
                     type="text"
                     name="name"
@@ -53,7 +55,7 @@ const BabyInfoForm = () => {
             </div>
             <div className="d-flex flex-gap-2">
                 <div className={styles.formControl}>
-                    <label htmlFor="weight">Weight ({units?.weightUnit})</label>
+                    <label htmlFor="weight">{t('baby_info_form.weight', { unit: units?.weightUnit })}</label>
                     <input
                         type="number"
                         name="weight"
@@ -62,7 +64,7 @@ const BabyInfoForm = () => {
                     />
                 </div>
                 <div className={styles.formControl}>
-                    <label htmlFor="height">Height ({units?.lengthUnit})</label>
+                    <label htmlFor="height">{t('baby_info_form.height', { unit: units?.lengthUnit })}</label>
                     <input
                         type="number"
                         name="height"
@@ -72,7 +74,7 @@ const BabyInfoForm = () => {
                 </div>
             </div>
             <div className={styles.formControl}>
-                <label htmlFor="birthday">Birthday</label>
+                <label htmlFor="birthday">{t('baby_info_form.birthday')}</label>
                 <input
                     type="date"
                     name="birthday"
@@ -82,7 +84,7 @@ const BabyInfoForm = () => {
             </div>
             {babyInfo?.name && (
                 <div className={styles.formControl}>
-                    <label htmlFor="photo">Photo</label>
+                    <label htmlFor="photo">{t('baby_info_form.photo')}</label>
                     {photo && <img src={photo} alt="Photo" className={styles.photo} />}
 
                     <input

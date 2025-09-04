@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types'
 import styles from './styles.module.scss'
+import { useTranslation } from 'react-i18next'
 
-const NoResults = ({ label = 'No results found' }) => {
+const NoResults = ({ label }) => {
+    const { t } = useTranslation()
     return (
         <div className={styles.container}>
-            <img src="/plant.webp" alt="No results" className={styles.image} />
-            <h3 className={styles.label}>{label}</h3>
+            <img src="/plant.webp" alt={t('no_results.alt')} className={styles.image} />
+            <h3 className={styles.label}>{label || t('no_results.label')}</h3>
         </div>
     )
 }

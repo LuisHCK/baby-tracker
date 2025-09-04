@@ -9,8 +9,10 @@ import styles from './styles.module.scss'
 import NoResults from '@/components/no-results'
 import { AppContext } from '@/context/app'
 import InProgress from '@/components/dashboard/in-progress'
+import { useTranslation } from 'react-i18next'
 
 const DashboardView = () => {
+    const { t } = useTranslation()
     const { sleepTimer } = useContext(AppContext)
     const [isLoading, setIsLoading] = useState(true)
     const [latestHistory, setLatestHistory] = useState([])
@@ -35,31 +37,31 @@ const DashboardView = () => {
         if (latestHistory.length) {
             return (
                 <Fragment>
-                    <h3 className={styles.sectionTitle}>History</h3>
+                    <h3 className={styles.sectionTitle}>{t('dashboard.history')}</h3>
                     {latestHistory.map((task) => (
                         <TaskCard task={task} key={`task-id-${task.id}`} />
                     ))}
                     <div className="flex-center">
-                        <Link href="/history">View full history</Link>
+                        <Link href="/history">{t('dashboard.viewFullHistory')}</Link>
                     </div>
                 </Fragment>
             )
         }
 
-        return !isLoading && <NoResults label="No history found" />
-    }, [latestHistory, isLoading])
+        return !isLoading && <NoResults label={t('dashboard.noHistory')} />
+    }, [latestHistory, isLoading, t])
 
     const renderInProgress = useMemo(() => {
         if (sleepTimer) {
             return (
                 <Fragment>
-                    <h3 className={styles.sectionTitle}>In progress</h3>
+                    <h3 className={styles.sectionTitle}>{t('dashboard.inProgress')}</h3>
                     <InProgress onSave={loadHistory} />
                 </Fragment>
             )
         }
         return null
-    }, [sleepTimer])
+    }, [sleepTimer, t])
 
     return (
         <div className="page-container mt-0">

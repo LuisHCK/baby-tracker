@@ -1,0 +1,198 @@
+{
+    "login": {
+        "proceedWithoutAccount": "Proceed without an account"
+    },
+    "growthRecords": {
+        "title": "Growth Records"
+    },
+    "register": {
+        "feeding": "Feeding",
+        "diaper": "Diaper",
+        "sleeping": "Sleeping",
+        "register": "Register"
+    },
+    "settings": {
+        "title": "Settings",
+        "babyInfo": "Baby information",
+        "appSettings": "App settings"
+    },
+    "common": {
+        "close": "Close",
+        "ok": "Ok",
+        "cancel": "Cancel",
+        "confirm": "Confirm"
+    },
+    "history": {
+        "title": "History"
+    },
+    "profile": {
+        "loggedIn": "Logged in",
+        "signIn": "Sign in"
+    },
+    "home": {
+        "openSource": "Open Source",
+        "features": "Features",
+        "benefits": "Benefits",
+        "star": "Star on GitHub",
+        "tryIt": "Try it now",
+        "hero": {
+            "openSourceSelfHosted": "Open-Source & Self-Hosted",
+            "title": {
+                "trackYourBabys": "Track Your Baby's",
+                "journey": "Journey"
+            },
+            "description": "A modern, privacy-focused, and open-source baby tracker that helps you monitor your little one's growth and daily activities. Self-host for complete data control.",
+            "getStarted": "Get Started",
+            "viewFeatures": "View Features",
+            "privacyFirst": "Privacy First",
+            "madeWithLove": "Made with ❤️ for new parents",
+            "dashboard": {
+                "todaysSummary": "Today's Summary",
+                "date": "Oct 26",
+                "feeds": "Feeds",
+                "sleep": "Sleep",
+                "dailyGoals": "Daily Goals",
+                "progressComplete": "75% complete"
+            },
+            "pills": {
+                "smartReminders": "Smart Reminders",
+                "growthCharts": "Growth Charts",
+                "privacyFirst": "Privacy First"
+            }
+        },
+        "featuresSection": {
+            "title": {
+                "everythingYouNeed": "Everything You Need to",
+                "trackAndCare": "Track and Care"
+            },
+            "description": "Baby Tracker is designed with all the essential features to make parenting a little easier. From feeding schedules to growth milestones, we've got you covered.",
+            "cards": {
+                "feedingTracking": {
+                    "title": "Feeding Tracking",
+                    "description": "Log breastfeeding, bottle-feeding, and solid food intake with ease. Track duration, amount, and type to ensure your baby is getting the right nutrition."
+                },
+                "diaperTracking": {
+                    "title": "Diaper Changes",
+                    "description": "Keep a record of wet and dirty diapers. Monitor patterns to ensure your baby is healthy and hydrated."
+                },
+                "sleepTracking": {
+                    "title": "Sleep Patterns",
+                    "description": "Track sleep sessions to understand your baby's sleep habits. Log naps and nighttime sleep to establish a healthy routine."
+                },
+                "growthMonitoring": {
+                    "title": "Growth Monitoring",
+                    "description": "Record weight, height, and head circumference. Visualize your baby's growth with interactive charts and compare with WHO percentiles."
+                },
+                "historicalData": {
+                    "title": "Historical Data",
+                    "description": "Access a complete history of all tracked activities. Filter and export data to share with pediatricians or for your personal records."
+                },
+                "privacyAndSecurity": {
+                    "title": "Privacy & Security",
+                    "description": "With self-hosting, your data stays on your server. No third-party access, no data mining. Just you and your baby's data."
+                }
+            }
+        },
+        "openSourceSection": {
+            "badge": "100% Open Source",
+            "title": {
+                "builtForPrivacy": "Built for Privacy and",
+                "freedom": "Freedom"
+            },
+            "description": "Baby Tracker is open-source, giving you the freedom to own, manage, and secure your data. No subscriptions, no hidden fees—just a tool built for you.",
+            "benefits": {
+                "completeControl": {
+                    "title": "Complete Control",
+                    "description": "Host the app on your own server or any cloud provider. You have full control over your data and the application."
+                },
+                "noMonthlyFees": {
+                    "title": "No Monthly Fees",
+                    "description": "Say goodbye to recurring subscriptions. Download, install, and use Baby Tracker for free, forever."
+                },
+                "communityDriven": {
+                    "title": "Community-Driven",
+                    "description": "Contribute to the project, suggest new features, and be part of a community dedicated to improving the tool for everyone."
+                },
+                "customizable": {
+                    "title": "Customizable & Extensible",
+                    "description": "Tailor the app to your needs. The open-source nature allows you to modify and extend the functionality as you see fit."
+                }
+            }
+        },
+        "cta": {
+            "title": "Ready to Start Your Journey?",
+            "description": "Take control of your baby's data and start tracking their milestones today. It's free, secure, and all yours.",
+            "viewOnGitHub": "View on GitHub",
+            "tryItNow": "Try It Now",
+            "footer": "Join hundreds of parents who trust Baby Tracker"
+        },
+        "footer": {
+            "description": "A modern, privacy-focused, and open-source baby tracker.",
+            "documentation": "Documentation",
+            "community": "Community",
+            "copyright": "© 2024 Baby Tracker. All rights reserved."
+        }
+    },
+    "dashboard": {
+        "history": "History",
+        "viewFullHistory": "View full history",
+        "noHistory": "No history found",
+        "inProgress": "In progress"
+    },
+    "task": {
+        "diaper": "Diaper",
+        "sleeping": "Sleeping",
+        "feeding": "Feeding"
+    },
+    "actions": {
+        "sleeping": "Sleeping",
+        "feeding": "Feeding",
+        "diaper": "Diaper"
+    },
+    "baby_profile": {
+        "photo_alt": "Photo of {{name}}",
+        "weight": "Weight",
+        "age": "Age",
+        "height": "Height"
+    },
+    "in_progress": {
+        "stop_timer_title": "Stop sleep timer?",
+        "stop_timer_description": "Do you want to record the sleeping time?",
+        "dont_save": "Don't save",
+        "save": "Save",
+        "sleep": "Sleep"
+    },
+    "navigation": {
+        "home": "Home",
+        "history": "History",
+        "profile": "Profile",
+        "settings": "Settings"
+    },
+    "no_results": {
+        "alt": "No results",
+        "label": "No results found"
+    },
+    "app_settings_form": {
+        "liquid_unit": "Liquid unit",
+        "select_liquid_unit": "Select liquid unit",
+        "select_unit": "Select an unit...",
+        "length_unit": "Length unit",
+        "select_length_unit": "Select length unit",
+        "weight_unit": "Weight unit",
+        "select_weight_unit": "Select weight unit"
+    },
+    "baby_info_form": {
+        "save_success_message": "Baby info saved successfully",
+        "photo_save_success_message": "Photo saved successfully",
+        "name": "Name",
+        "weight": "Weight ({{unit}})",
+        "height": "Height ({{unit}})",
+        "birthday": "Birthday",
+        "photo": "Photo"
+    },
+    "layouts": {
+        "page_layout": {
+            "title": "Baby Tracker"
+        }
+    }
+}

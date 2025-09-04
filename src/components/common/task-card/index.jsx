@@ -13,28 +13,34 @@ import { useMemo } from 'react'
 import { formatDuration } from '@/utils/tools'
 import Details from './details'
 import { TASK_TYPES } from '@/lib/constansts'
+import { useTranslation } from 'react-i18next'
 
 const TaskCard = ({ task }) => {
+    const { t } = useTranslation()
     const taskDetails = useMemo(() => {
         switch (task.type) {
             case TASK_TYPES.DIAPER:
                 return {
                     icon: <IconDiaper />,
-                    label: 'Diaper',
+                    label: t('task.diaper'),
                     details: <Details task={task} />
                 }
             case TASK_TYPES.SLEEPING:
-                return { icon: <IconZzz />, label: 'Sleeping', details: <Details task={task} /> }
+                return {
+                    icon: <IconZzz />,
+                    label: t('task.sleeping'),
+                    details: <Details task={task} />
+                }
             case TASK_TYPES.FEEDING:
                 return {
                     icon: <IconBabyBottle />,
-                    label: 'Feeding',
+                    label: t('task.feeding'),
                     details: <Details task={task} />
                 }
             default:
                 return { icon: <IconSubtask />, label: '' }
         }
-    }, [task])
+    }, [task, t])
 
     const duration = useMemo(() => {
         if (task.endedAt) {

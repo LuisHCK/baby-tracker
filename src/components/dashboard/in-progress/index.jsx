@@ -11,11 +11,13 @@ import { addHistory } from '@/controllers/history'
 import useDialog from '@/hooks/use-dialog'
 import { isDate } from 'date-fns'
 import { TASK_TYPES } from '@/lib/constansts'
+import { useTranslation } from 'react-i18next'
 
 const InProgress = ({ onSave = () => {} }) => {
     const { sleepTimer, setSleepTimer } = useContext(AppContext)
     const [timeCounter, setTimeCounter] = useState('00s')
     const { openDialog } = useDialog()
+    const { t } = useTranslation()
     const intervalId = useRef(null)
 
     const clearStoredTimer = () => {
@@ -38,10 +40,10 @@ const InProgress = ({ onSave = () => {} }) => {
 
     const stopTimer = () => {
         openDialog({
-            title: 'Stop sleep timer?',
-            description: 'Do you want to record the sleeping time?',
-            cancelText: `Don't save`,
-            confirmText: 'Save',
+            title: t('in_progress.stop_timer_title'),
+            description: t('in_progress.stop_timer_description'),
+            cancelText: t('in_progress.dont_save'),
+            confirmText: t('in_progress.save'),
             onDismiss: () => {
                 clearStoredTimer()
             },
@@ -73,7 +75,7 @@ const InProgress = ({ onSave = () => {} }) => {
             </div>
             <div className={styles.content}>
                 <div className={styles.contentDetails}>
-                    <div className={styles.label}>Sleep</div>
+                    <div className={styles.label}>{t('in_progress.sleep')}</div>
                     <div className={styles.counter}>
                         <IconClock />
                         <div className={styles.counterLabel}>{timeCounter}</div>
