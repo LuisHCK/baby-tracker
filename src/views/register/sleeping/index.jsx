@@ -11,8 +11,10 @@ import { AppContext } from '@/context/app'
 import InProgress from '@/components/dashboard/in-progress'
 import Tabs from '@/components/common/tabs'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 
 const SleepingView = () => {
+    const { t } = useTranslation()
     const [history, setHistory] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -36,8 +38,8 @@ const SleepingView = () => {
     const handleFormSubmit = useCallback(async () => {
         await getHistory()
         setIsModalOpen(false)
-        toast.success('Sleep logged successfully')
-    }, [getHistory])
+    toast.success(t('sleep.loggedSuccessfully'))
+    }, [getHistory, t])
 
     useEffect(() => {
         getHistory()
@@ -47,12 +49,12 @@ const SleepingView = () => {
         if (sleepTimer) {
             return (
                 <div className="mb-4">
-                    <h6>In progress</h6>
+                    <h6>{t('sleep.inProgress')}</h6>
                     <InProgress onSave={getHistory} />
                 </div>
             )
         }
-    }, [sleepTimer])
+    }, [sleepTimer, t])
 
     /**
      * Tabs configuration for the forms (memoized)
@@ -60,15 +62,15 @@ const SleepingView = () => {
     const formTabs = useMemo(
         () => [
             {
-                label: 'Manual',
+                label: t('form.manual'),
                 content: <ManualForm onSubmit={handleFormSubmit} onSave={handleFormSubmit} />
             },
             {
-                label: 'Timer',
+                label: t('form.timer'),
                 content: <TimerForm onSubmit={handleFormSubmit} />
             }
         ],
-        [handleFormSubmit]
+        [handleFormSubmit, t]
     )
 
     return (
@@ -84,13 +86,13 @@ const SleepingView = () => {
             <Modal
                 isOpen={isModalOpen}
                 onClose={toggleModal}
-                title="Register sleeping"
-                cancelLabel="Hide"
+                title={t('sleep.register')}
+                cancelLabel={t('form.hide')}
                 hideConfirm
             >
                 {isModalOpen && <Tabs tabs={formTabs} />}
             </Modal>
-            <StickyBottomButton label="Start sleep timer" onClick={toggleModal} />
+            <StickyBottomButton label={t('sleep.startTimer')} onClick={toggleModal} />
         </Fragment>
     )
 }

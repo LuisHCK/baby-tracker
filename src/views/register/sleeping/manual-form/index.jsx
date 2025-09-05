@@ -5,8 +5,10 @@ import { TASK_TYPES } from '@/lib/constansts'
 import { format, parse, isAfter } from 'date-fns'
 import { useMemo } from 'react'
 import { IconCone } from '@tabler/icons-react'
+import { useTranslation } from 'react-i18next'
 
 const ManualForm = ({ onSave }) => {
+    const { t } = useTranslation()
     const now = format(new Date(), "yyyy-MM-dd'T'HH:mm")
     const {
         register,
@@ -50,22 +52,22 @@ const ManualForm = ({ onSave }) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <h5>Register manually</h5>
+            <h5>{t('form.registerManually')}</h5>
 
             <div>
                 <label>
-                    Start:
+                    {t('form.start')}:
                     <input
                         className="cursor-pointer"
                         type="datetime-local"
                         {...register('start', { required: true })}
                         max={now}
                     />
-                    {errors.start && <span style={{ color: 'red' }}>Start time is required</span>}
+                    {errors.start && <span style={{ color: 'red' }}>{t('form.startTimeRequired')}</span>}
                 </label>
                 <br />
                 <label>
-                    End:
+                    {t('form.end')}:
                     <input
                         className="cursor-pointer"
                         type="datetime-local"
@@ -77,12 +79,12 @@ const ManualForm = ({ onSave }) => {
                 {isInvalidDateRange && (
                     <article className="card">
                         <IconCone />
-                        <span style={{ color: 'red' }}>End must be after start</span>
+                        <span style={{ color: 'red' }}>{t('form.startAfterEnd')}</span>
                     </article>
                 )}
                 <br />
                 <button type="submit" disabled={!isInvalidDateRange}>
-                    Submit
+                    {t('form.submit')}
                 </button>
             </div>
         </form>

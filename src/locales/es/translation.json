@@ -1,7 +1,24 @@
 {
-    "login": {
-        "proceedWithoutAccount": "Continuar sin una cuenta"
+    "sleep": {
+        "loggedSuccessfully": "Sueño registrado exitosamente",
+        "inProgress": "En progreso",
+        "register": "Registrar sueño",
+        "startTimer": "Iniciar temporizador de sueño",
+        "stopTimerConfirm": "¿Estás seguro de que deseas detener el temporizador de sueño?"
     },
+    "form": {
+        "manual": "Manual",
+        "timer": "Temporizador",
+        "registerManually": "Registrar manualmente",
+        "start": "Iniciar",
+        "end": "Fin",
+        "startTimeRequired": "La hora de inicio es obligatoria",
+        "startAfterEnd": "La hora de inicio debe ser anterior a la hora de fin",
+        "submit": "Enviar",
+        "hide": "Ocultar",
+        "stop": "Detener"
+    },
+    "proceedWithoutAccount": "Continuar sin una cuenta",
     "growthRecords": {
         "title": "Registros de Crecimiento"
     },

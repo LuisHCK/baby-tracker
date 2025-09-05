@@ -1,4 +1,23 @@
 {
+    "sleep": {
+        "loggedSuccessfully": "Sleep logged successfully",
+        "inProgress": "In progress",
+        "register": "Register sleeping",
+        "startTimer": "Start sleep timer",
+        "stopTimerConfirm": "Are you sure you want to stop the sleep timer?"
+    },
+    "form": {
+        "manual": "Manual",
+        "timer": "Timer",
+        "registerManually": "Register manually",
+        "start": "Start",
+        "end": "End",
+        "startTimeRequired": "Start time is required",
+        "startAfterEnd": "Start time must be before end time",
+        "submit": "Submit",
+        "hide": "Hide",
+        "stop": "Stop"
+    },
     "login": {
         "proceedWithoutAccount": "Proceed without an account"
     },

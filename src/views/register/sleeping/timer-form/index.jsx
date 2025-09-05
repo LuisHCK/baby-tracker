@@ -2,10 +2,12 @@ import styles from './styles.module.scss'
 import { useContext, useEffect, useState } from 'react'
 import { AppContext } from '@/context/app'
 import { durationFormat } from '@/utils/time'
+import { useTranslation } from 'react-i18next'
 
 let INTERVAL = null
 
 const SleepingForm = () => {
+    const { t } = useTranslation()
     const { sleepTimer, setSleepTimer } = useContext(AppContext)
     const [timeCounter, setTimeCounter] = useState('00h:00m:00s')
 
@@ -16,7 +18,7 @@ const SleepingForm = () => {
     }
 
     const stopTimer = () => {
-        if (confirm('Are you sure you want to stop the sleep timer?')) {
+        if (confirm(t('sleep.stopTimerConfirm'))) {
             setSleepTimer(null)
         }
     }
@@ -46,7 +48,7 @@ const SleepingForm = () => {
             <p className={styles.timer}>{timeCounter}</p>
             <div className="d-flex w-100">
                 <button className="w-100 secondary" onClick={toggleTimer}>
-                    {sleepTimer ? 'Stop' : 'Start'}
+                    {sleepTimer ? t('form.stop') : t('form.start')}
                 </button>
             </div>
         </div>
