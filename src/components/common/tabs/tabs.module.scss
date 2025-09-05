@@ -1,0 +1,20 @@
+@use '@/styles/colors' as colors;
+
+.button {
+    padding: 8px 16px;
+    border: none;
+    background: colors.$light;
+    cursor: pointer;
+    font-weight: normal;
+    color: colors.$dark;
+
+    &:hover {
+        background: colors.$light-red;
+    }
+
+    &:global(.active) {
+        color: colors.$light;
+        font-weight: bold;
+        background: colors.$primary-color;
+    }
+}
