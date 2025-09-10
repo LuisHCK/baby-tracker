@@ -3,7 +3,8 @@ import database from '@/database'
 /**
  * Type definitions
  * @typedef {Object} History
- * @property {string} id
+ * @property {number} id
+ * @property {number} babyId
  * @property {string} type
  * @property {string} label
  * @property {string} startedAt
@@ -18,14 +19,19 @@ const History = database.table('history')
  * @param {number} limit Maximum number of records to return
  * @returns {Promise<History[]>} Array of history records
  */
-export const getHistory = async (limit = 10) => {
-    const history = await History.orderBy('createdAt').reverse().limit(limit).toArray()
+export const getHistory = async (limit = 10, babyId) => {
+    const history = await History.where({ babyId })
+        .orderBy('createdAt')
+        .reverse()
+        .limit(limit)
+        .toArray()
     return history
 }
 
-export const getHistoryByType = async (type) => {
+export const getHistoryByType = async (type, babyId) => {
     try {
-        const history = await History.limit(100)
+        const history = await History.where({ babyId })
+            .limit(100)
             .filter((task) => task.type === type)
             .reverse()
             .toArray()
@@ -36,9 +42,13 @@ export const getHistoryByType = async (type) => {
     }
 }
 
-export const getLatestHistory = async () => {
+export const getLatestHistory = async ({ babyId }) => {
     try {
-        const history = await History.orderBy('createdAt').reverse().limit(5).toArray()
+        const history = await History.where({ babyId })
+            .orderBy('createdAt')
+            .reverse()
+            .limit(5)
+            .toArray()
         return history
     } catch (error) {
         console.error(error)
@@ -48,7 +58,7 @@ export const getLatestHistory = async () => {
 
 /**
  * Register a new task
- * @param {History} data
+ * @param {Partial<History>} data
  * @returns {Promise<History>}
  */
 export const addHistory = async (data) => {

@@ -11,9 +11,18 @@ export const startInProgressTask = async (data) => {
     }
 }
 
-export const getAllInProgressTasks = async () => {
+/**
+ * Get all in progress tasks for a baby
+ * @param {string} babyId - The baby's id
+ * @returns {Promise<Array>} - An array of tasks
+ */
+export const getAllInProgressTasks = async (babyId) => {
     try {
-        const tasks = await InProgress.orderBy('createdAt').limit(10).reverse().toArray()
+        const tasks = await InProgress.where({ babyId })
+            .orderBy('createdAt')
+            .limit(10)
+            .reverse()
+            .toArray()
         return tasks
     } catch (error) {
         console.error(error)
@@ -21,9 +30,9 @@ export const getAllInProgressTasks = async () => {
     }
 }
 
-export const getInProgressTask = async (id) => {
+export const getInProgressTask = async (id, babyId) => {
     try {
-        const task = await InProgress.get(id)
+        const task = await InProgress.get({ id, babyId })
         return task
     } catch (error) {
         console.error(error)
