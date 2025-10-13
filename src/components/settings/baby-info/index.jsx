@@ -6,24 +6,40 @@ import { AppContext } from '@/context/app'
 import { resizeImage } from '@/utils/images'
 import styles from './styles.module.scss'
 import { useTranslation } from 'react-i18next'
+import { addBaby, updateBaby } from '@/controllers/babies'
 
 let SAVE_TIMEOUT = null
 
 const BabyInfoForm = () => {
     const { register, handleSubmit, watch } = useForm()
-    const { babyInfo, setBabyInfo, photo, setPhoto, units } = useContext(AppContext)
+    const { babies, currentBaby, setCurrentBaby, photo, setPhoto, units } = useContext(AppContext)
     const { t } = useTranslation()
 
     const saveData = async (data) => {
-        const res = await saveSettings('babyInfo', data)
-        if (res) {
-            setBabyInfo(res.value)
-            toast.success(t('baby_info_form.save_success_message'))
+        // Create the first baby if none exists
+        if (!babies.length && !currentBaby) {
+            const newBaby = await addBaby(data)
+            if (newBaby) {
+                setCurrentBaby(newBaby)
+                saveSettings('currentBaby', newBaby.id)
+                toast.success(t('baby_info_form.save_success_message'))
+            } else {
+                toast.error(t('baby_info_form.save_error_message'))
+            }
+            return
+        } else {
+            const updatedBaby = await updateBaby(currentBaby.id, data)
+            if (updatedBaby) {
+                setCurrentBaby(updatedBaby)
+                toast.success(t('baby_info_form.save_success_message'))
+            } else {
+                toast.error(t('baby_info_form.save_error_message'))
+            }
         }
     }
 
     const savePhoto = (encodedImage = '') => {
-        if (babyInfo) {
+        if (currentBaby) {
             window.localStorage.setItem('photo', encodedImage)
             setPhoto(encodedImage)
             toast.success(t('baby_info_form.photo_save_success_message'))
@@ -48,27 +64,31 @@ const BabyInfoForm = () => {
                 <input
                     type="text"
                     name="name"
-                    defaultValue={babyInfo?.name}
+                    defaultValue={currentBaby?.name}
                     required
                     {...register('name', { required: 'Name is required' })}
                 />
             </div>
             <div className="d-flex flex-gap-2">
                 <div className={styles.formControl}>
-                    <label htmlFor="weight">{t('baby_info_form.weight', { unit: units?.weightUnit })}</label>
+                    <label htmlFor="weight">
+                        {t('baby_info_form.weight', { unit: units?.weightUnit })}
+                    </label>
                     <input
                         type="number"
                         name="weight"
-                        defaultValue={babyInfo?.weight}
+                        defaultValue={currentBaby?.weight}
                         {...register('weight')}
                     />
                 </div>
                 <div className={styles.formControl}>
-                    <label htmlFor="height">{t('baby_info_form.height', { unit: units?.lengthUnit })}</label>
+                    <label htmlFor="height">
+                        {t('baby_info_form.height', { unit: units?.lengthUnit })}
+                    </label>
                     <input
                         type="number"
                         name="height"
-                        defaultValue={babyInfo?.height}
+                        defaultValue={currentBaby?.height}
                         {...register('height')}
                     />
                 </div>
@@ -78,11 +98,11 @@ const BabyInfoForm = () => {
                 <input
                     type="date"
                     name="birthday"
-                    defaultValue={babyInfo?.birthday}
+                    defaultValue={currentBaby?.birthday}
                     {...register('birthday')}
                 />
             </div>
-            {babyInfo?.name && (
+            {currentBaby?.name && (
                 <div className={styles.formControl}>
                     <label htmlFor="photo">{t('baby_info_form.photo')}</label>
                     {photo && <img src={photo} alt="Photo" className={styles.photo} />}

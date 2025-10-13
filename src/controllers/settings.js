@@ -18,7 +18,7 @@ export const saveSettings = async (settingKey = '', value = null) => {
     return await database.settings.get({ name: settingKey })
 }
 
-export const getSettings = async (settingKey = '') => {
+export const getSettings = async (settingKey = '', defaultValue = null) => {
     const existingEntry = await database.settings.get({ name: settingKey })
-    return existingEntry
+    return existingEntry || defaultValue
 }

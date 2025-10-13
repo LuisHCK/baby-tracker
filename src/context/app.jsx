@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { getSettings } from '@/controllers/settings'
 import { PHOTO_KEY } from '@/lib/constansts'
+import { getBaby, listBabies } from '@/controllers/babies'
 
 const initialState = {
     sleepTimer: localStorage.getItem('sleepTimer') || null,
@@ -16,7 +17,8 @@ const initialState = {
 export const AppContext = createContext(initialState)
 
 export const AppContenxtProvider = ({ children }) => {
-    const [babyInfo, setBabyInfo] = useState({})
+    const [babies, setBabies] = useState([])
+    const [currentBaby, setCurrentBaby] = useState(null)
     const [availableTasks, setAvailableTasks] = useState([])
     const [currentTask, setCurrentTask] = useState(null)
     const [settings, setSettings] = useState({})
@@ -26,13 +28,22 @@ export const AppContenxtProvider = ({ children }) => {
     const [photo, setPhoto] = useState(initialState.photo)
 
     useEffect(() => {
-        getSettings('babyInfo').then((res) => res && setBabyInfo(res.value))
+        // Load all babies
+        const loadAllBabies = async () => {
+            const res = await listBabies()
+            setBabies(res)
+        }
+        loadAllBabies()
+        // Load settings
+        getSettings('currentBaby').then((res) => res && getBaby(res.value).then(setCurrentBaby))
         getSettings('units').then((res) => res?.value && setUnits(res.value))
     }, [])
 
     const state = {
-        babyInfo,
-        setBabyInfo,
+        babies,
+        setBabies,
+        currentBaby,
+        setCurrentBaby,
         availableTasks,
         setAvailableTasks,
         currentTask,

@@ -14,21 +14,21 @@ import database from '@/database'
 
 const History = database.table('history')
 
-/**
- * Get task history
- * @param {number} limit Maximum number of records to return
- * @returns {Promise<History[]>} Array of history records
- */
-export const getHistory = async (limit = 10, babyId) => {
-    const history = await History.where({ babyId })
-        .orderBy('createdAt')
-        .reverse()
-        .limit(limit)
-        .toArray()
+export const getHistory = async ({ limit = 10, babyId }) => {
+    const history = await History.where({ babyId }).reverse().limit(limit).toArray()
     return history
 }
 
-export const getHistoryByType = async (type, babyId) => {
+/**
+ * Retrieves up to 100 history records of a specific type for a given baby.
+ *
+ * @async
+ * @param {Object} params - The parameters for fetching history.
+ * @param {string} params.type - The type of history records to retrieve.
+ * @param {string} params.babyId - The ID of the baby whose history is being fetched.
+ * @returns {Promise<Array<Object>|null>} A promise that resolves to an array of history records, or null if an error occurs.
+ */
+export const getHistoryByType = async ({ type, babyId }) => {
     try {
         const history = await History.where({ babyId })
             .limit(100)
@@ -44,11 +44,7 @@ export const getHistoryByType = async (type, babyId) => {
 
 export const getLatestHistory = async ({ babyId }) => {
     try {
-        const history = await History.where({ babyId })
-            .orderBy('createdAt')
-            .reverse()
-            .limit(5)
-            .toArray()
+        const history = await History.where({ babyId }).reverse().limit(5).toArray()
         return history
     } catch (error) {
         console.error(error)

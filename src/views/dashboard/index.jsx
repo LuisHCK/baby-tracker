@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect, useMemo, useState } from 'react'
+import { Fragment, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import classNames from 'classnames'
 import { Link } from 'wouter'
 import TaskCard from '@/components/common/task-card'
@@ -13,25 +13,27 @@ import { useTranslation } from 'react-i18next'
 
 const DashboardView = () => {
     const { t } = useTranslation()
-    const { sleepTimer } = useContext(AppContext)
+    const { sleepTimer, currentBaby } = useContext(AppContext)
     const [isLoading, setIsLoading] = useState(true)
     const [latestHistory, setLatestHistory] = useState([])
 
-    const loadHistory = async () => {
-        setIsLoading(true)
+    const loadHistory = useCallback(async () => {
+        if (!currentBaby?.id) return
 
-        const history = await getLatestHistory()
+        // Show loading indicator
+        setIsLoading(true)
+        const history = await getLatestHistory({ babyId: currentBaby.id })
 
         if (history) {
             setLatestHistory(history)
         }
 
         setIsLoading(false)
-    }
+    }, [currentBaby])
 
     useEffect(() => {
         loadHistory()
-    }, [])
+    }, [loadHistory])
 
     const taskHistory = useMemo(() => {
         if (latestHistory.length) {

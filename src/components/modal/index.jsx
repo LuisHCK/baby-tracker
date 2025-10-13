@@ -8,6 +8,8 @@ const Modal = ({
     onConfirm = () => {},
     isOpen = false,
     hideConfirm = false,
+    hideCancel = false,
+    hideFooter = false,
     title = '',
     cancelLabel,
     confirmLabel
@@ -35,18 +37,30 @@ const Modal = ({
         <dialog open={isOpen}>
             <article>
                 <header>
-                    <button onClick={handleClose} aria-label={t('common.close')} rel="prev"></button>
+                    <button
+                        onClick={handleClose}
+                        aria-label={t('common.close')}
+                        rel="prev"
+                    ></button>
                     <p>
                         <strong>{title}</strong>
                     </p>
                 </header>
                 {children}
-                <footer>
-                    <button onClick={handleClose} className="secondary">
-                        {cancelLabel || t('common.cancel')}
-                    </button>
-                    {!hideConfirm && <button onClick={onConfirm}>{confirmLabel || t('common.confirm')}</button>}
-                </footer>
+                {!hideFooter && (
+                    <footer>
+                        {!hideCancel && (
+                            <button onClick={handleClose} className="secondary">
+                                {cancelLabel || t('common.cancel')}
+                            </button>
+                        )}
+                        {!hideConfirm && (
+                            <button onClick={onConfirm}>
+                                {confirmLabel || t('common.confirm')}
+                            </button>
+                        )}
+                    </footer>
+                )}
             </article>
         </dialog>
     )
@@ -59,6 +73,8 @@ Modal.propTypes = {
     isOpen: PropTypes.bool,
     title: PropTypes.string,
     hideConfirm: PropTypes.bool,
+    hideCancel: PropTypes.bool,
+    hideFooter: PropTypes.bool,
     cancelLabel: PropTypes.string,
     confirmLabel: PropTypes.string
 }

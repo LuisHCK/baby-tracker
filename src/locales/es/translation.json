@@ -16,7 +16,8 @@
         "startAfterEnd": "La hora de inicio debe ser anterior a la hora de fin",
         "submit": "Enviar",
         "hide": "Ocultar",
-        "stop": "Detener"
+        "stop": "Detener",
+        "cancel": "Cancelar"
     },
     "proceedWithoutAccount": "Continuar sin una cuenta",
     "growthRecords": {
@@ -201,6 +202,7 @@
     "baby_info_form": {
         "save_success_message": "Información del bebé guardada con éxito",
         "photo_save_success_message": "Foto guardada con éxito",
+        "save_error_message": "Error al guardar la información del bebé",
         "name": "Nombre",
         "weight": "Peso ({{unit}})",
         "height": "Altura ({{unit}})",

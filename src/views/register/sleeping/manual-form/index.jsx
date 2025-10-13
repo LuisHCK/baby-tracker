@@ -3,11 +3,13 @@ import { useForm } from 'react-hook-form'
 import { addHistory } from '@/controllers/history'
 import { TASK_TYPES } from '@/lib/constansts'
 import { format, parse, isAfter } from 'date-fns'
-import { useMemo } from 'react'
+import { useContext, useMemo } from 'react'
 import { IconCone } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
+import { AppContext } from '@/context/app'
 
 const ManualForm = ({ onSave }) => {
+    const { currentBaby } = useContext(AppContext)
     const { t } = useTranslation()
     const now = format(new Date(), "yyyy-MM-dd'T'HH:mm")
     const {
@@ -20,7 +22,6 @@ const ManualForm = ({ onSave }) => {
             end: now
         }
     })
-    console.log(errors)
 
     const startValue = watch('start')
     const endValue = watch('end')
@@ -33,7 +34,8 @@ const ManualForm = ({ onSave }) => {
         const newTask = await addHistory({
             type: TASK_TYPES.SLEEPING,
             startedAt,
-            endedAt
+            endedAt,
+            babyId: currentBaby.id
         })
 
         if (newTask && onSave) {
@@ -52,8 +54,6 @@ const ManualForm = ({ onSave }) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <h5>{t('form.registerManually')}</h5>
-
             <div>
                 <label>
                     {t('form.start')}:
@@ -63,7 +63,9 @@ const ManualForm = ({ onSave }) => {
                         {...register('start', { required: true })}
                         max={now}
                     />
-                    {errors.start && <span style={{ color: 'red' }}>{t('form.startTimeRequired')}</span>}
+                    {errors.start && (
+                        <span style={{ color: 'red' }}>{t('form.startTimeRequired')}</span>
+                    )}
                 </label>
                 <br />
                 <label>
@@ -83,7 +85,7 @@ const ManualForm = ({ onSave }) => {
                     </article>
                 )}
                 <br />
-                <button type="submit" disabled={!isInvalidDateRange}>
+                <button type="submit" disabled={isInvalidDateRange}>
                     {t('form.submit')}
                 </button>
             </div>

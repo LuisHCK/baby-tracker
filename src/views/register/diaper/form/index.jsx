@@ -2,11 +2,12 @@ import { useForm } from 'react-hook-form'
 import PropTypes from 'prop-types'
 import styles from './styles.module.scss'
 import { format, parse } from 'date-fns'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { capitalize } from '@/utils/tools'
 import { addHistory } from '@/controllers/history'
 import toast from 'react-hot-toast'
 import { TASK_TYPES } from '@/lib/constansts'
+import { AppContext } from '@/context/app'
 
 const moreDetailsLabels = {
     wet: ['none', 'light', 'medium', 'full'],
@@ -14,6 +15,7 @@ const moreDetailsLabels = {
 }
 
 const DiaperForm = ({ onSubmit = () => {} }) => {
+    const { currentBaby } = useContext(AppContext)
     const [selectedState, setSelectedState] = useState('')
     const {
         register,
@@ -30,7 +32,8 @@ const DiaperForm = ({ onSubmit = () => {} }) => {
         const response = await addHistory({
             ...data,
             type: TASK_TYPES.DIAPER,
-            endedAt: parse(data.endedAt, `yyyy-MM-dd'T'HH:mm`, new Date()).toISOString()
+            endedAt: parse(data.endedAt, `yyyy-MM-dd'T'HH:mm`, new Date()).toISOString(),
+            babyId: currentBaby.id
         })
         if (response) {
             toast.success('Diaper logged successfully')

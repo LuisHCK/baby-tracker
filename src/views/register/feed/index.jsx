@@ -1,5 +1,5 @@
 import { getHistoryByType } from '@/controllers/history'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useCallback, useContext, useEffect, useState } from 'react'
 import styles from './styles.module.scss'
 import NoResults from '@/components/no-results'
 import Modal from '@/components/modal'
@@ -10,6 +10,7 @@ import { TASK_TYPES } from '@/lib/constansts'
 import LineChart from '@/components/charts/line-chart'
 import { format, parseISO } from 'date-fns'
 import classNames from 'classnames'
+import { AppContext } from '@/context/app'
 
 const ACTIVE_TAB = {
     HISTORY: 'history',
@@ -17,6 +18,7 @@ const ACTIVE_TAB = {
 }
 
 const FeedView = () => {
+    const { currentBaby } = useContext(AppContext)
     const [history, setHistory] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [feedModalIsOpen, setFeedModalIsOpen] = useState(false)
@@ -26,15 +28,15 @@ const FeedView = () => {
         setFeedModalIsOpen((prev) => !prev)
     }
 
-    const getHistory = async () => {
+    const getHistory = useCallback(async () => {
         setIsLoading(true)
-        const res = await getHistoryByType(TASK_TYPES.FEEDING)
+        const res = await getHistoryByType({ type: TASK_TYPES.FEEDING, babyId: currentBaby?.id })
         setIsLoading(false)
 
         if (Array.isArray(res)) {
             setHistory(res.sort((a, b) => parseISO(b.endedAt) - parseISO(a.endedAt)))
         }
-    }
+    }, [currentBaby])
 
     const handleFormSubmit = async () => {
         await getHistory()
@@ -51,27 +53,29 @@ const FeedView = () => {
 
     useEffect(() => {
         getHistory()
-    }, [])
+    }, [getHistory])
 
     return (
         <Fragment>
             {/* Tabs */}
-            <div className={styles.tabs}>
-                <button
-                    type="button"
-                    className={classNames({ secondary: activeTab === ACTIVE_TAB.HISTORY })}
-                    onClick={() => setActiveTab(ACTIVE_TAB.HISTORY)}
-                >
-                    History
-                </button>
-                <button
-                    type="button"
-                    className={classNames({ secondary: activeTab === ACTIVE_TAB.CHARTS })}
-                    onClick={() => setActiveTab(ACTIVE_TAB.CHARTS)}
-                >
-                    Charts
-                </button>
-            </div>
+            {!!history.length && (
+                <div className={styles.tabs}>
+                    <button
+                        type="button"
+                        className={classNames({ secondary: activeTab === ACTIVE_TAB.HISTORY })}
+                        onClick={() => setActiveTab(ACTIVE_TAB.HISTORY)}
+                    >
+                        History
+                    </button>
+                    <button
+                        type="button"
+                        className={classNames({ secondary: activeTab === ACTIVE_TAB.CHARTS })}
+                        onClick={() => setActiveTab(ACTIVE_TAB.CHARTS)}
+                    >
+                        Charts
+                    </button>
+                </div>
+            )}
 
             {/* Tab Content */}
             {activeTab === 'history' && (

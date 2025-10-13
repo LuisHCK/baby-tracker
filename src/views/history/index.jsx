@@ -1,16 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { getHistory } from '@/controllers/history'
 import TaskList from '@/components/task-list'
 import NoResults from '@/components/no-results'
+import { AppContext } from '@/context/app'
 
 const HistoryView = () => {
+    const { currentBaby } = useContext(AppContext)
     const [isLoading, setIsLoading] = useState(true)
     const [history, setHistory] = useState([])
 
     useEffect(() => {
         const loadTasks = async () => {
+            if (!currentBaby?.id) {
+                return
+            }
             setIsLoading(true)
-            const history = await getHistory()
+            const history = await getHistory({ babyId: currentBaby?.id })
             if (history) {
                 setHistory(history)
             }
@@ -18,7 +23,7 @@ const HistoryView = () => {
         }
 
         loadTasks()
-    }, [])
+    }, [currentBaby])
 
     return (
         <div>

@@ -3,7 +3,6 @@
         "loggedSuccessfully": "Sleep logged successfully",
         "inProgress": "In progress",
         "register": "Register sleeping",
-        "startTimer": "Start sleep timer",
         "stopTimerConfirm": "Are you sure you want to stop the sleep timer?"
     },
     "form": {
@@ -16,7 +15,13 @@
         "startAfterEnd": "Start time must be before end time",
         "submit": "Submit",
         "hide": "Hide",
-        "stop": "Stop"
+        "stop": "Stop",
+        "cancel": "Cancel"
+    },
+    "language": {
+        "selectLanguage": "Select Language",
+        "english": "English",
+        "spanish": "Español"
     },
     "login": {
         "proceedWithoutAccount": "Proceed without an account"
@@ -203,6 +208,7 @@
     "baby_info_form": {
         "save_success_message": "Baby info saved successfully",
         "photo_save_success_message": "Photo saved successfully",
+        "save_error_message": "Error saving baby info",
         "name": "Name",
         "weight": "Weight ({{unit}})",
         "height": "Height ({{unit}})",

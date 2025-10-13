@@ -22,14 +22,15 @@ const FeedForm = ({ onSubmit = () => {} }) => {
             milk: 0
         }
     })
-    const { units } = useContext(AppContext)
+    const { units, currentBaby } = useContext(AppContext)
 
     const saveData = async (data) => {
         const response = await addHistory({
             ...data,
             type: TASK_TYPES.FEEDING,
             endedAt: parse(data.endedAt, `yyyy-MM-dd'T'HH:mm`, new Date()).toISOString(),
-            unit: units?.liquidUnit
+            unit: units?.liquidUnit,
+            babyId: currentBaby.id
         })
         if (response) {
             toast.success('Feed logged successfully')
@@ -49,7 +50,7 @@ const FeedForm = ({ onSubmit = () => {} }) => {
 
     useEffect(() => {
         const loadDefaultMilkSource = async () => {
-            const { value } = await getSettings('defaultMilkSource')
+            const { value } = await getSettings('defaultMilkSource', {})
             if (value) {
                 setValue('source', value)
             }

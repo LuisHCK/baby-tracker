@@ -8,7 +8,7 @@ import { useLocation } from 'wouter'
 const AuthRequired = ({ children }) => {
     const userId = null // TODO: Replace with actual user ID logic
     const isLoaded = true // TODO: Replace with actual loading state logic
-    const { babyInfo } = useContext(AppContext)
+    const { currentBaby } = useContext(AppContext)
     // eslint-disable-next-line no-unused-vars
     const [_, navigate] = useLocation()
 
@@ -21,10 +21,10 @@ const AuthRequired = ({ children }) => {
             navigate('~/login')
         }
 
-        if (isLoaded && currentUser && isEmpty(babyInfo)) {
+        if (isLoaded && currentUser && isEmpty(currentBaby)) {
             navigate('/settings')
         }
-    }, [isLoaded, userId, babyInfo, navigate])
+    }, [isLoaded, userId, currentBaby, navigate])
 
     if (!isLoaded) {
         return <FullPageLoader />
