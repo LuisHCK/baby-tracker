@@ -36,4 +36,9 @@ bun run dev
 ```
 
 ## Screenshots
-<img src="https://github.com/user-attachments/assets/190a01a7-8a18-4774-9142-78e290a3297b" width="480" />
+
+| | |
+| --- | --- |
+| ![optim-localhost_5173_app(iPhone 14 Pro Max) (4)](https://github.com/user-attachments/assets/a7c19cf4-9976-4a85-9315-a0fe1b6027b5) | ![optim-localhost_5173_app(iPhone 14 Pro Max) (3)](https://github.com/user-attachments/assets/90c0746b-5e79-4d7a-953b-84893c43942e) |
+| ![optim-localhost_5173_app(iPhone 14 Pro Max) (2)](https://github.com/user-attachments/assets/0b3b39af-176c-41eb-992b-19c67940d1bc) | ![optim-localhost_5173_app(iPhone 14 Pro Max)](https://github.com/user-attachments/assets/a001daf2-a1c9-4230-b55b-f89e69641f2b) |
+| ![optim-localhost_5173_app(iPhone 14 Pro Max) (1)](https://github.com/user-attachments/assets/e3092160-78d6-4369-8890-7fb10e0d88f0) | |
