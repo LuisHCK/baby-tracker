@@ -1,28 +1,22 @@
 import { getHistoryByType } from '@/controllers/history'
-import { Fragment, useCallback, useContext, useEffect, useState } from 'react'
+import { Fragment, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import styles from './styles.module.scss'
 import NoResults from '@/components/no-results'
 import Modal from '@/components/modal'
 import FeedForm from './form'
 import StickyBottomButton from '@/components/sticky-bottom-button'
 import TaskList from '@/components/task-list'
+import Tabs from '@/components/common/tabs'
 import { TASK_TYPES } from '@/lib/constansts'
 import LineChart from '@/components/charts/line-chart'
 import { format, parseISO } from 'date-fns'
-import classNames from 'classnames'
 import { AppContext } from '@/context/app'
-
-const ACTIVE_TAB = {
-    HISTORY: 'history',
-    CHARTS: 'charts'
-}
 
 const FeedView = () => {
     const { currentBaby } = useContext(AppContext)
     const [history, setHistory] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [feedModalIsOpen, setFeedModalIsOpen] = useState(false)
-    const [activeTab, setActiveTab] = useState(ACTIVE_TAB.HISTORY)
 
     const toggleFeedModal = () => {
         setFeedModalIsOpen((prev) => !prev)
@@ -43,13 +37,30 @@ const FeedView = () => {
         setFeedModalIsOpen(false)
     }
 
-    const parseTaskDate = (date = '') => {
+    const parseTaskDate = useCallback((date = '') => {
         try {
             return format(parseISO(date), 'h:mbb')
         } catch (error) {
             console.log(`Error parsing date: ${error}`)
         }
-    }
+        return ''
+    }, [])
+
+    const chartData = useMemo(() => {
+        const reversedHistory = history.slice().reverse()
+
+        return {
+            labels: reversedHistory.map((item) => parseTaskDate(item.endedAt)),
+            series: [reversedHistory.map((item) => item.milk)]
+        }
+    }, [history, parseTaskDate])
+
+    const historyContent = (
+        <div className={styles.feedLayout}>
+            <TaskList tasks={history} />
+            {!isLoading && !history.length && <NoResults />}
+        </div>
+    )
 
     useEffect(() => {
         getHistory()
@@ -57,55 +68,18 @@ const FeedView = () => {
 
     return (
         <Fragment>
-            {/* Tabs */}
-            {!!history.length && (
+            {history.length > 0 ? (
                 <div className={styles.tabs}>
-                    <button
-                        type="button"
-                        className={classNames({ secondary: activeTab === ACTIVE_TAB.HISTORY })}
-                        onClick={() => setActiveTab(ACTIVE_TAB.HISTORY)}
-                    >
-                        History
-                    </button>
-                    <button
-                        type="button"
-                        className={classNames({ secondary: activeTab === ACTIVE_TAB.CHARTS })}
-                        onClick={() => setActiveTab(ACTIVE_TAB.CHARTS)}
-                    >
-                        Charts
-                    </button>
+                    <Tabs
+                        defaultIndex={0}
+                        tabs={[
+                            { label: 'History', content: historyContent },
+                            { label: 'Charts', content: <LineChart data={chartData} /> }
+                        ]}
+                    />
                 </div>
-            )}
-
-            {/* Tab Content */}
-            {activeTab === 'history' && (
-                <div className={styles.feedLayout}>
-                    <TaskList tasks={history} />
-                    {!isLoading && !history.length && <NoResults />}
-                </div>
-            )}
-
-            {activeTab === 'charts' && (
-                <LineChart
-                    data={{
-                        labels: history
-                            .slice()
-                            .reverse()
-                            .map((item) => parseTaskDate(item.endedAt)),
-                        datasets: [
-                            {
-                                label: 'Feed',
-                                data: history
-                                    .slice()
-                                    .reverse()
-                                    .map((item) => item.milk),
-                                borderColor: '#fe6e63',
-                                backgroundColor: '#fe6e63',
-                                fill: false
-                            }
-                        ]
-                    }}
-                />
+            ) : (
+                historyContent
             )}
 
             <Modal

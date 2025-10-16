@@ -6,6 +6,8 @@ import { flOzRegex } from './regex'
  * @returns {boolean}
  */
 export const isEmpty = (obj) => {
+    if (!obj) return true
+
     switch (typeof obj) {
         case 'object':
             return Array.isArray(obj) ? obj.length === 0 : Object.keys(obj).length === 0

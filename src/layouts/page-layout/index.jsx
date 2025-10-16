@@ -25,7 +25,7 @@ const PageLayout = ({ children, title, redirectToHome = false }) => {
                 </button>
                 <h1 className={styles.title}>{title || t('layouts.page_layout.title')}</h1>
             </header>
-            <div className="page-container pt-4">
+            <div className="page-container">
                 {children}
             </div>
         </article>
