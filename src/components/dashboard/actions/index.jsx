@@ -10,19 +10,19 @@ const Actions = () => {
     const { t } = useTranslation()
     const buttons = [
         {
-            label: t('actions.sleeping'),
+            label: t('register.sleeping'),
             icon: IconZzz,
             className: 'variantRed',
             path: '/register/sleeping'
         },
         {
-            label: t('actions.feeding'),
+            label: t('register.feeding'),
             icon: IconBabyBottle,
             className: 'variantOrange',
             path: '/register/feed'
         },
         {
-            label: t('actions.diaper'),
+            label: t('register.diaper'),
             icon: IconDiaper,
             className: 'variantPurple',
             path: '/register/diaper'

@@ -22,19 +22,19 @@ const TaskCard = ({ task }) => {
             case TASK_TYPES.DIAPER:
                 return {
                     icon: <IconDiaper />,
-                    label: t('task.diaper'),
+                    label: t('register.diaper'),
                     details: <Details task={task} />
                 }
             case TASK_TYPES.SLEEPING:
                 return {
                     icon: <IconZzz />,
-                    label: t('task.sleeping'),
+                    label: t('register.sleeping'),
                     details: <Details task={task} />
                 }
             case TASK_TYPES.FEEDING:
                 return {
                     icon: <IconBabyBottle />,
-                    label: t('task.feeding'),
+                    label: t('register.feeding'),
                     details: <Details task={task} />
                 }
             default:

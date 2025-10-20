@@ -39,7 +39,7 @@ const Modal = ({
 
     return (
         <div className={styles.overlay} onClick={handleClose}>
-            <div 
+            <div
                 className={`${styles.content} ${styles[size]}`}
                 onClick={(e) => e.stopPropagation()}
             >
@@ -50,26 +50,24 @@ const Modal = ({
                 >
                     ×
                 </button>
-                
+
                 {title && (
                     <header className={styles.header}>
                         <h2 className={styles.title}>{title}</h2>
                     </header>
                 )}
-                
-                <div className={styles.body}>
-                    {children}
-                </div>
-                
+
+                <div className={styles.body}>{children}</div>
+
                 {!hideFooter && (
                     <footer className={styles.footer}>
                         {!hideCancel && (
-                            <button onClick={handleClose} className="secondary">
+                            <button onClick={handleClose} className="btn-secondary">
                                 {cancelLabel || t('common.cancel')}
                             </button>
                         )}
                         {!hideConfirm && (
-                            <button onClick={onConfirm}>
+                            <button onClick={onConfirm} className="btn-secondary">
                                 {confirmLabel || t('common.confirm')}
                             </button>
                         )}

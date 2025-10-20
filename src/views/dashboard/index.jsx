@@ -63,10 +63,10 @@ const DashboardView = () => {
             )
         }
         return null
-    }, [sleepTimer, t])
+    }, [sleepTimer, t, loadHistory])
 
     return (
-        <div className="page-container mt-0">
+        <div className="mt-0">
             <div className={classNames('container', styles.header)}>
                 <BabyProfile />
             </div>

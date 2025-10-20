@@ -4,7 +4,6 @@ import Navigation from '@/components/navigation'
 import FullPageLoader from '@/components/common/fullpage-loader'
 
 const HomePage = lazy(() => import('@/pages/home'))
-const LoginPage = lazy(() => import('@/pages/login'))
 const DashboardPage = lazy(() => import('@/pages/dashboard'))
 const HistoryPage = lazy(() => import('@/pages/history'))
 const ProfilePage = lazy(() => import('@/pages/profile'))
@@ -16,7 +15,6 @@ export const AppRouter = () => {
         <Suspense fallback={<FullPageLoader />}>
             <Switch>
                 <Route path="/" component={HomePage} />
-                <Route path="/login/*?" component={LoginPage} />
 
                 <Route path="/app" nest>
                     <Route path="/" component={DashboardPage} />

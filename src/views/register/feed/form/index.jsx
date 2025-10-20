@@ -62,7 +62,7 @@ const FeedForm = ({ onSubmit = () => {} }) => {
         <form onSubmit={handleSubmit(saveData)} className={styles.container}>
             <MilkInput onChange={({ unit }) => setValue('milk', unit)} />
 
-            <div className={styles.formInput}>
+            <div className="formControl">
                 <label htmlFor="endedAt">Feeding time</label>
 
                 <input
@@ -75,7 +75,7 @@ const FeedForm = ({ onSubmit = () => {} }) => {
                 />
             </div>
 
-            <div>
+            <div className="formControl">
                 <label htmlFor="source">Source</label>
                 <select
                     name="source"
@@ -92,14 +92,16 @@ const FeedForm = ({ onSubmit = () => {} }) => {
                 </select>
             </div>
 
-            <div>
+            <div className="formControl">
                 <label htmlFor="notes">Notes (optional)</label>
                 <textarea name="notes" id="notes" rows="3" {...register('notes')} />
             </div>
 
-            <button type="submit" disabled={!isValid}>
-                Submit
-            </button>
+            <div className="formControl">
+                <button type="submit" disabled={!isValid}>
+                    Submit
+                </button>
+            </div>
         </form>
     )
 }

@@ -62,7 +62,7 @@ const DiaperForm = ({ onSubmit = () => {} }) => {
 
     return (
         <form onSubmit={handleSubmit(saveDiaper)} className={styles.container}>
-            <div className={styles.formInput}>
+            <div className="formControl">
                 <label htmlFor="state">State</label>
                 <select
                     name="state"
@@ -80,7 +80,7 @@ const DiaperForm = ({ onSubmit = () => {} }) => {
                 </select>
             </div>
 
-            <div className={styles.formInput}>
+            <div className="formControl">
                 <label htmlFor="endedAt">Datetime</label>
 
                 <input
@@ -93,7 +93,7 @@ const DiaperForm = ({ onSubmit = () => {} }) => {
                 />
             </div>
 
-            <div className={styles.formInput}>
+            <div className="formControl">
                 <label htmlFor="moreDetails">More (details)</label>
                 <select
                     name="moreDetails"
@@ -105,14 +105,16 @@ const DiaperForm = ({ onSubmit = () => {} }) => {
                 </select>
             </div>
 
-            <div className={styles.formInput}>
+            <div className="formControl">
                 <label htmlFor="notes">Notes (optional)</label>
                 <textarea name="notes" id="notes" rows="3" {...register('notes')} />
             </div>
 
-            <button disabled={!isValid} type="submit">
-                Submit
-            </button>
+            <div className="formControl">
+                <button disabled={!isValid} type="submit">
+                    Submit
+                </button>
+            </div>
         </form>
     )
 }

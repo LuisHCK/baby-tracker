@@ -27,8 +27,8 @@ const Navigation = () => {
         },
         {
             icon: IconUserCircle,
-            label: t('navigation.profile'),
-            path: '/profile'
+            label: t('navigation.sharing'),
+            path: '/sharing'
         },
         {
             icon: IconSettings,

@@ -13,15 +13,7 @@ const AuthRequired = ({ children }) => {
     const [_, navigate] = useLocation()
 
     useEffect(() => {
-        const anonymousUser = window.localStorage.getItem('userId') === 'anonymous'
-
-        const currentUser = userId || anonymousUser
-
-        if (isLoaded && !currentUser) {
-            navigate('~/login')
-        }
-
-        if (isLoaded && currentUser && isEmpty(currentBaby)) {
+        if (isLoaded && isEmpty(currentBaby)) {
             navigate('/settings')
         }
     }, [isLoaded, userId, currentBaby, navigate])

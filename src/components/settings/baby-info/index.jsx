@@ -59,7 +59,7 @@ const BabyInfoForm = () => {
 
     return (
         <form onSubmit={handleSubmit(saveData)}>
-            <div className={styles.formControl}>
+            <div className="formControl">
                 <label htmlFor="name">{t('baby_info_form.name')}</label>
                 <input
                     type="text"
@@ -70,7 +70,7 @@ const BabyInfoForm = () => {
                 />
             </div>
             <div className="grid grid-cols-2 gap-1">
-                <div className={styles.formControl}>
+                <div className="formControl">
                     <label htmlFor="weight">
                         {t('baby_info_form.weight', { unit: units?.weightUnit })}
                     </label>
@@ -83,7 +83,7 @@ const BabyInfoForm = () => {
                         {...register('weight')}
                     />
                 </div>
-                <div className={styles.formControl}>
+                <div className="formControl">
                     <label htmlFor="height">
                         {t('baby_info_form.height', { unit: units?.lengthUnit })}
                     </label>
@@ -96,7 +96,7 @@ const BabyInfoForm = () => {
                     />
                 </div>
             </div>
-            <div className={styles.formControl}>
+            <div className="formControl">
                 <label htmlFor="birthday">{t('baby_info_form.birthday')}</label>
                 <input
                     type="date"
@@ -106,7 +106,7 @@ const BabyInfoForm = () => {
                 />
             </div>
             {currentBaby?.name && (
-                <div className={styles.formControl}>
+                <div className="formControl">
                     <label htmlFor="photo">{t('baby_info_form.photo')}</label>
                     {photo && <img src={photo} alt="Photo" className={styles.photo} />}
 
@@ -114,6 +114,7 @@ const BabyInfoForm = () => {
                         type="file"
                         name="photo"
                         accept="image/*"
+                        className={styles.fileInput}
                         onChange={(e) => {
                             resizeImage(e.target.files[0], 150, 150, (e) => {
                                 savePhoto(e)
@@ -123,8 +124,10 @@ const BabyInfoForm = () => {
                 </div>
             )}
 
-            <div className={styles.formControl}>
-                <label htmlFor="gender">Gender</label>
+            <div className="formControl">
+                <label htmlFor="gender">
+                    {t('baby_info_form.gender')}
+                </label>
                 <select
                     name="gender"
                     aria-label="Select gender"
