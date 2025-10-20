@@ -8,7 +8,7 @@ const LangForm = () => {
     }
 
     return (
-        <div>
+        <div className='d-flex flex-column mt-2'>
             <label>{t('language.selectLanguage')}:</label>
             <select onChange={(e) => changeLanguage(e.target.value)} defaultValue={i18n.language}>
                 <option value="en">{t('language.english')}</option>

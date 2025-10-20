@@ -1,12 +1,13 @@
-@use "@picocss/pico";
+@use 'styles/base';
+@use 'styles/theme';
 @use 'styles/colors';
 @use 'styles/spacing';
 @use 'styles/flex';
+@use 'styles/grid';
 @use 'styles/utils';
 
 :root {
     color-scheme: only light;
-    --pico-border-radius: 1rem;
 }
 
 body {
@@ -18,16 +19,18 @@ body {
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
+    padding: 0px 1rem;
 
     @media (min-width: 600px) {
         max-width: 600px;
+        padding: 0;
     }
 
     @media (min-width: 1024px) {
         max-width: 1024px;
+        padding: 0;
     }
 }
-
 
 #root {
     width: 100%;

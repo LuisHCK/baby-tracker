@@ -4,6 +4,7 @@ import { isEmpty } from '@/utils/tools'
 import { useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import styles from './styles.module.scss'
 
 let SAVE_TIMEOUT = null
 
@@ -42,7 +43,7 @@ const AppSettingsForm = () => {
 
     return (
         <form onSubmit={handleSubmit()}>
-            <div>
+            <div className={styles.formControl}>
                 <label htmlFor="liquidUnit">{t('app_settings_form.liquid_unit')}</label>
                 <select
                     name="liquidUnit"
@@ -56,7 +57,7 @@ const AppSettingsForm = () => {
                 </select>
             </div>
 
-            <div>
+            <div className={styles.formControl}>
                 <label htmlFor="lengthUnit">{t('app_settings_form.length_unit')}</label>
                 <select
                     name="lengthUnit"
@@ -69,7 +70,7 @@ const AppSettingsForm = () => {
                 </select>
             </div>
 
-            <div>
+            <div className={styles.formControl}>
                 <label htmlFor="weightUnit">{t('app_settings_form.weight_unit')}</label>
                 <select
                     name="weightUnit"

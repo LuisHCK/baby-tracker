@@ -69,12 +69,14 @@ const BabyInfoForm = () => {
                     {...register('name', { required: 'Name is required' })}
                 />
             </div>
-            <div className="d-flex flex-gap-2">
+            <div className="grid grid-cols-2 gap-1">
                 <div className={styles.formControl}>
                     <label htmlFor="weight">
                         {t('baby_info_form.weight', { unit: units?.weightUnit })}
                     </label>
+
                     <input
+                        id="weight"
                         type="number"
                         name="weight"
                         defaultValue={currentBaby?.weight}
@@ -85,6 +87,7 @@ const BabyInfoForm = () => {
                     <label htmlFor="height">
                         {t('baby_info_form.height', { unit: units?.lengthUnit })}
                     </label>
+
                     <input
                         type="number"
                         name="height"
@@ -120,7 +123,7 @@ const BabyInfoForm = () => {
                 </div>
             )}
 
-            <div>
+            <div className={styles.formControl}>
                 <label htmlFor="gender">Gender</label>
                 <select
                     name="gender"

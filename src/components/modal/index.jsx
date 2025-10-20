@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import styles from './styles.module.scss'
 
 const Modal = ({
     children,
@@ -12,7 +13,8 @@ const Modal = ({
     hideFooter = false,
     title = '',
     cancelLabel,
-    confirmLabel
+    confirmLabel,
+    size = 'md'
 }) => {
     const { t } = useTranslation()
     const handleClose = () => {
@@ -33,22 +35,34 @@ const Modal = ({
         }
     }, [isOpen])
 
+    if (!isOpen) return null
+
     return (
-        <dialog open={isOpen}>
-            <article>
-                <header>
-                    <button
-                        onClick={handleClose}
-                        aria-label={t('common.close')}
-                        rel="prev"
-                    ></button>
-                    <p>
-                        <strong>{title}</strong>
-                    </p>
-                </header>
-                {children}
+        <div className={styles.overlay} onClick={handleClose}>
+            <div 
+                className={`${styles.content} ${styles[size]}`}
+                onClick={(e) => e.stopPropagation()}
+            >
+                <button
+                    className={styles.close}
+                    onClick={handleClose}
+                    aria-label={t('common.close')}
+                >
+                    ×
+                </button>
+                
+                {title && (
+                    <header className={styles.header}>
+                        <h2 className={styles.title}>{title}</h2>
+                    </header>
+                )}
+                
+                <div className={styles.body}>
+                    {children}
+                </div>
+                
                 {!hideFooter && (
-                    <footer>
+                    <footer className={styles.footer}>
                         {!hideCancel && (
                             <button onClick={handleClose} className="secondary">
                                 {cancelLabel || t('common.cancel')}
@@ -61,8 +75,8 @@ const Modal = ({
                         )}
                     </footer>
                 )}
-            </article>
-        </dialog>
+            </div>
+        </div>
     )
 }
 
@@ -76,7 +90,8 @@ Modal.propTypes = {
     hideCancel: PropTypes.bool,
     hideFooter: PropTypes.bool,
     cancelLabel: PropTypes.string,
-    confirmLabel: PropTypes.string
+    confirmLabel: PropTypes.string,
+    size: PropTypes.oneOf(['sm', 'md', 'lg', 'xl', 'full'])
 }
 
 export default Modal

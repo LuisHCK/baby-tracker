@@ -1,0 +1,102 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+/* Base grid columns */
+.grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-cols-6 { grid-template-columns: repeat(6, 1fr); }
+
+/* Base col-span */
+.col-span-1 { grid-column: span 1; }
+.col-span-2 { grid-column: span 2; }
+.col-span-3 { grid-column: span 3; }
+.col-span-4 { grid-column: span 4; }
+.col-span-6 { grid-column: span 6; }
+
+/* Responsive: sm (640px) */
+@media (min-width: 640px) {
+  .sm\\:grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+  .sm\\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .sm\\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .sm\\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .sm\\:grid-cols-6 { grid-template-columns: repeat(6, 1fr); }
+
+  .sm\\:col-span-1 { grid-column: span 1; }
+  .sm\\:col-span-2 { grid-column: span 2; }
+  .sm\\:col-span-3 { grid-column: span 3; }
+  .sm\\:col-span-4 { grid-column: span 4; }
+  .sm\\:col-span-6 { grid-column: span 6; }
+}
+
+/* Responsive: md (768px) */
+@media (min-width: 768px) {
+  .md\\:grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+  .md\\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .md\\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .md\\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .md\\:grid-cols-6 { grid-template-columns: repeat(6, 1fr); }
+
+  .md\\:col-span-1 { grid-column: span 1; }
+  .md\\:col-span-2 { grid-column: span 2; }
+  .md\\:col-span-3 { grid-column: span 3; }
+  .md\\:col-span-4 { grid-column: span 4; }
+  .md\\:col-span-6 { grid-column: span 6; }
+}
+
+/* Responsive: lg (1024px) */
+@media (min-width: 1024px) {
+  .lg\\:grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+  .lg\\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .lg\\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .lg\\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .lg\\:grid-cols-6 { grid-template-columns: repeat(6, 1fr); }
+
+  .lg\\:col-span-1 { grid-column: span 1; }
+  .lg\\:col-span-2 { grid-column: span 2; }
+  .lg\\:col-span-3 { grid-column: span 3; }
+  .lg\\:col-span-4 { grid-column: span 4; }
+  .lg\\:col-span-6 { grid-column: span 6; }
+}
+
+/* Responsive: xl (1280px) */
+@media (min-width: 1280px) {
+  .xl\\:grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+  .xl\\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .xl\\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .xl\\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .xl\\:grid-cols-6 { grid-template-columns: repeat(6, 1fr); }
+
+  .xl\\:col-span-1 { grid-column: span 1; }
+  .xl\\:col-span-2 { grid-column: span 2; }
+  .xl\\:col-span-3 { grid-column: span 3; }
+  .xl\\:col-span-4 { grid-column: span 4; }
+  .xl\\:col-span-6 { grid-column: span 6; }
+}
+
+/* Responsive: 2xl (1536px) */
+@media (min-width: 1536px) {
+  .\\32xl\\:grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+  .\\32xl\\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .\\32xl\\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .\\32xl\\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .\\32xl\\:grid-cols-6 { grid-template-columns: repeat(6, 1fr); }
+
+  .\\32xl\\:col-span-1 { grid-column: span 1; }
+  .\\32xl\\:col-span-2 { grid-column: span 2; }
+  .\\32xl\\:col-span-3 { grid-column: span 3; }
+  .\\32xl\\:col-span-4 { grid-column: span 4; }
+  .\\32xl\\:col-span-6 { grid-column: span 6; }
+}
+
+/* Example usage:
+<div class="grid grid-cols-2">
+  <div class="col-span-2">Full width</div>
+  <div>Half</div>
+  <div>Half</div>
+</div>
+*/

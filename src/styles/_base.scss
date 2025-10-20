@@ -1,0 +1,92 @@
+@import './_colors.scss';
+
+:root {
+  --primary: #{$primary-color};
+  --secondary: #{$secondary-color};
+  --white: #{$white};
+  --gray: #{$gray};
+  --dark: #{$dark};
+}
+
+body {
+  font-family: var(--font-family, 'Inter', Arial, sans-serif);
+  background: var(--white);
+  color: var(--dark);
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  border-radius: 0.375rem;
+  border: 1px solid var(--gray);
+  outline: none;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+button {
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: 0.5em 1.5em;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+button:hover,
+button:focus {
+  background: var(--secondary);
+  color: var(--white);
+}
+button:active {
+  background: var(--dark);
+}
+
+input {
+  width: 100%;
+}
+
+input,
+select,
+textarea {
+  background: var(--white);
+  color: var(--dark);
+  padding: 0.5em 1em;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+}
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(254,110,99,0.15);
+}
+
+label {
+  font-weight: 500;
+  margin-bottom: 0.25em;
+  display: inline-block;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover,
+a:focus {
+  color: var(--secondary);
+  text-decoration: underline;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--gray);
+  margin: 2em 0;
+}
+
+::-webkit-input-placeholder { color: var(--gray); }
+::-moz-placeholder { color: var(--gray); }
+:-ms-input-placeholder { color: var(--gray); }
+::placeholder { color: var(--gray); }
