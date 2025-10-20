@@ -1,11 +1,11 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import MilkInput from '@/components/tracking/milk-input'
 import styles from './styles.module.scss'
 import { format, parse } from 'date-fns'
 import { getSettings, saveSettings } from '@/controllers/settings'
 import { useForm } from 'react-hook-form'
-import { addHistory } from '@/controllers/history'
+import { addHistory, getHistoryByType } from '@/controllers/history'
 import toast from 'react-hot-toast'
 import { AppContext } from '@/context/app'
 import { TASK_TYPES } from '@/lib/constansts'
@@ -23,6 +23,7 @@ const FeedForm = ({ onSubmit = () => {} }) => {
         }
     })
     const { units, currentBaby } = useContext(AppContext)
+    const [lastFeed, setLastFeed] = useState(null)
 
     const saveData = async (data) => {
         const response = await addHistory({
@@ -55,12 +56,27 @@ const FeedForm = ({ onSubmit = () => {} }) => {
                 setValue('source', value)
             }
         }
+
+        const loadLastFeed = async () => {
+            const lastFeedEntry = await getHistoryByType({
+                type: TASK_TYPES.FEEDING,
+                babyId: currentBaby.id,
+                limit: 1
+            })
+
+            if (lastFeedEntry && lastFeedEntry.length > 0) {
+                const milk = lastFeedEntry[0].milk || 0
+                setLastFeed(milk)
+            }
+        }
+
         loadDefaultMilkSource()
-    }, [setValue])
+        loadLastFeed()
+    }, [setValue, currentBaby])
 
     return (
         <form onSubmit={handleSubmit(saveData)} className={styles.container}>
-            <MilkInput onChange={({ unit }) => setValue('milk', unit)} />
+            <MilkInput onChange={({ unit }) => setValue('milk', unit)} defaultValue={lastFeed} />
 
             <div className="formControl">
                 <label htmlFor="endedAt">Feeding time</label>

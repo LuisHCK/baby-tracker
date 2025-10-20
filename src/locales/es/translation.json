@@ -180,7 +180,8 @@
     "navigation": {
         "home": "Inicio",
         "history": "Historial",
-        "sharing": "Compartir"
+        "sharing": "Compartir",
+        "settings": "Configuración"
     },
     "no_results": {
         "alt": "No hay resultados",

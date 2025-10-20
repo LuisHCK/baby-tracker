@@ -1,4 +1,4 @@
-import { useContext, useMemo, useState } from 'react'
+import { useContext, useEffect, useMemo, useState } from 'react'
 import styles from './styles.module.scss'
 import { AppContext } from '@/context/app'
 import scales from '@/lib/scales.json'
@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import Picker from 'react-mobile-picker'
 import classNames from 'classnames'
 
-const MilkInput = ({ onChange = () => {} }) => {
+const MilkInput = ({ onChange = () => {}, defaultValue }) => {
     const [pickerValue, setPickerValue] = useState({ unit: 10, decimal: 0 })
     const { units } = useContext(AppContext)
 
@@ -35,6 +35,12 @@ const MilkInput = ({ onChange = () => {} }) => {
         setPickerValue({ unit, decimal })
         onChange?.({ unit })
     }
+
+    useEffect(() => {
+        if (defaultValue) {
+            setPickerValue({ unit: defaultValue, decimal: 0 })
+        }
+    }, [defaultValue])
 
     const renderUnits = useMemo(() => {
         return inputRange.units.map((unit) => (
@@ -70,7 +76,8 @@ const MilkInput = ({ onChange = () => {} }) => {
 }
 
 MilkInput.propTypes = {
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    defaultValue: PropTypes.number
 }
 
 export default MilkInput

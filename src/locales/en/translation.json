@@ -180,7 +180,8 @@
     "navigation": {
         "home": "Home",
         "history": "History",
-        "sharing": "Sharing"
+        "sharing": "Sharing",
+        "settings": "Settings"
     },
     "no_results": {
         "alt": "No results",

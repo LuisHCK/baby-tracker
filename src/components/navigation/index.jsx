@@ -32,7 +32,7 @@ const Navigation = () => {
         },
         {
             icon: IconSettings,
-            label: t('navigation.settings'),
+        label: t('navigation.settings'),
             path: '/settings'
         }
     ]

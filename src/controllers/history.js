@@ -26,12 +26,13 @@ export const getHistory = async ({ limit = 10, babyId }) => {
  * @param {Object} params - The parameters for fetching history.
  * @param {string} params.type - The type of history records to retrieve.
  * @param {string} params.babyId - The ID of the baby whose history is being fetched.
+ * @param {number} params.limit - The maximum number of records to retrieve. Default value is 100.
  * @returns {Promise<Array<Object>|null>} A promise that resolves to an array of history records, or null if an error occurs.
  */
-export const getHistoryByType = async ({ type, babyId }) => {
+export const getHistoryByType = async ({ type, babyId, limit = 100 }) => {
     try {
         const history = await History.where({ babyId })
-            .limit(100)
+            .limit(limit)
             .filter((task) => task.type === type)
             .reverse()
             .toArray()
