@@ -69,7 +69,7 @@ const TaskCard = ({ task }) => {
                 </div>
                 {!!duration && (
                     <div className={styles.time}>
-                        {formatDuration(duration)} <IconClock width={18} />
+                        {formatDuration(duration, task.endedAt)} <IconClock width={18} />
                     </div>
                 )}
             </div>

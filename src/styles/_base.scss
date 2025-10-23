@@ -63,7 +63,7 @@ textarea {
     }
 }
 
-button {
+button, .button {
     @include button-variant(var(--primary), var(--primary-hover), var(--primary-active));
 }
 

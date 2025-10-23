@@ -1,3 +1,4 @@
+import { format } from 'date-fns'
 import { flOzRegex } from './regex'
 
 /**
@@ -24,7 +25,21 @@ export const toFixed = (num, decimals = 2) => (Math.round(num * 100) / 100).toFi
 
 export const toDoubleDigit = (num = 0) => num.toString().padStart(2, '0')
 
-export const formatDuration = (duration = {}) => {
+/**
+ * Formats a duration object into a human-readable string.
+ * Returns localized date if duration >= 1 day, otherwise returns formatted time (e.g., "2h 30m", "45m", "30s").
+ * 
+ * @param {Object} [duration={}] - Duration with days, hours, minutes, seconds
+ * @param {Date|string|number} endedAt - End date/time for durations >= 1 day
+ * @returns {string} Formatted duration or date string
+ */
+export const formatDuration = (duration = {}, endedAt) => {
+    // If duration days is more than 1 show only the date
+    if (duration.days && duration.days >= 1) {
+        return format(new Date(endedAt), 'LLL d')
+    }
+
+    // Format duration string
     let result = ''
 
     if (duration.days && duration.days > 0) {
@@ -63,7 +78,7 @@ export const capitalize = (string) => {
  * Generate an array of number from a range with a given step
  * @param {number} min range start
  * @param {number} max range end
- * @param {number} step 
+ * @param {number} step
  * @returns {number[]}
  */
 export const generateArrayFromRange = (min = 0, max = 1, step = 1) => {

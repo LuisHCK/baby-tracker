@@ -32,7 +32,7 @@ const Navigation = () => {
         },
         {
             icon: IconSettings,
-        label: t('navigation.settings'),
+            label: t('navigation.settings'),
             path: '/settings'
         }
     ]
@@ -52,7 +52,7 @@ const Navigation = () => {
                     key={`nav-button-${button.label}`}
                 >
                     <button.icon height={22} width={22} />
-                    {button.label}
+                    <span className={styles.label}>{button.label}</span>
                 </Link>
             ))}
         </div>

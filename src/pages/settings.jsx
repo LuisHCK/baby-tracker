@@ -21,8 +21,8 @@ const SettingsPage = () => {
                 <LangForm />
             </Card>
 
-            <div className="d-flex mt-4">
-                <Link type="button" to="/" className="w-100 btn btn-primary">
+            <div className="d-flex flex-center mt-4">
+                <Link type="button" to="/" className="button">
                     {t('common.close')}
                 </Link>
             </div>
