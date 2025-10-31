@@ -5,7 +5,6 @@ services:
             target: production
             args:
                 # Pass through a build-time variable; set in your shell or .env before building
-                VITE_CLERK_PUBLISHABLE_KEY: ${VITE_CLERK_PUBLISHABLE_KEY}
         ports:
             - '3000:80'
         environment:
